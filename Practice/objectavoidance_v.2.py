@@ -76,7 +76,7 @@ def checkObject():
             except brickpi3.SensorError as error:
                 print(error)
             print(uvalue2)
-            if(uvalue2 < 75 or uvalue2 == 255.0):
+            if(uvalue2 < 80 or uvalue2 == 255.0):
                 print("You are in the if")
                 turnLeft()
             else:
