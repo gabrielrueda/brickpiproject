@@ -11,17 +11,21 @@ speed = 20
 def linefollowing():
     value = 0
     error = 0
-    p = 0.8
+    p = 0.9
 
     try:
         value = BP.get_sensor(BP.PORT_3)
         print(value)                # print the color
     except brickpi3.SensorError as error:
         print(error)
-    error = (value - 39) * p
+    error = (value - 28) * p
 
-    BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
-    BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
+    # if(BP.get_motor_encoder(BP.PORT_A) > BP.get_motor_encoder(BP.PORT_D)):
+    BP.set_motor_power(BP.PORT_A, speed - (error * 0.8))
+    BP.set_motor_power(BP.PORT_D, speed + (error * 0.8))
+    # else:
+    #     BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
+    #     BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
 
 
 def config():
