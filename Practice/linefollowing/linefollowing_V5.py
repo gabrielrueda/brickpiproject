@@ -13,9 +13,7 @@ def linefollowing():
     sOff = 0
     sCenter = 0
     error = 0
-    p = 0.9
-    direction = True
-
+    
     try:
         sCenter = BP.get_sensor(BP.PORT_3)
         print(sCenter)                # print the color
@@ -28,24 +26,29 @@ def linefollowing():
     except brickpi3.SensorError as error:
         print(error)
 
-    error = (sCenter - 31) * p
-
-    if(sOff > 49 and sCenter < 5):
-        direction = True
-    elif(sOff < 49 and sCenter < 5):
-        direction = False
-    
-    if(direction == True):
-        BP.set_motor_power(BP.PORT_A, speed - (error * 0.8))
-        BP.set_motor_power(BP.PORT_D, (speed+10) + (error * 0.8))
-    elif(direction == False):
-        BP.set_motor_power(BP.PORT_A, (speed+10) + (error * 0.8))
-        BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
+    if(sCenter >= 11 and sOff >=50):
+        BP.set_motor_power(BP.PORT_A, 20)
+        BP.set_motor_power(BP.PORT_D, 20)
+    elif(sCenter >= 11):
+        BP.set_motor_power(BP.PORT_A, 20)
+        BP.set_motor_power(BP.PORT_D, 20)
+    elif(sCenter < 11):
+        turning(sCenter,sOff)
     else:
         BP.set_motor_power(BP.PORT_A, 0)
         BP.set_motor_power(BP.PORT_D, 0)
- 
 
+def turning(sCenter, sOff):
+    p = 0.9
+    error = (sCenter - 31) * p
+    if(sOff >= 50):
+        BP.set_motor_power(BP.PORT_A, speed - (error * 0.8))
+        BP.set_motor_power(BP.PORT_D, speed + (error * 0.8))
+    elif(sOff < 25):
+        BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
+        BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
+    else:
+        pass
 
 def config():
     try:
