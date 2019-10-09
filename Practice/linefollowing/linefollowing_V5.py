@@ -26,25 +26,25 @@ def linefollowing():
     except brickpi3.SensorError as error:
         print(error)
 
-    if(sCenter >= 11 and sOff >=50):
+    if(sCenter <= 7 and sOff <= 12):
         BP.set_motor_power(BP.PORT_A, 20)
         BP.set_motor_power(BP.PORT_D, 20)
-    elif(sCenter >= 11):
+    elif(sCenter <= 7):
         BP.set_motor_power(BP.PORT_A, 20)
         BP.set_motor_power(BP.PORT_D, 20)
-    elif(sCenter < 11):
+    elif(sCenter > 7):
         turning(sCenter,sOff)
     else:
         BP.set_motor_power(BP.PORT_A, 0)
         BP.set_motor_power(BP.PORT_D, 0)
 
 def turning(sCenter, sOff):
-    p = 0.9
-    error = (sCenter - 31) * p
-    if(sOff >= 50):
+    p = 1.5
+    error = (sCenter - 15) * p
+    if(sOff <= 12):
         BP.set_motor_power(BP.PORT_A, speed - (error * 0.8))
         BP.set_motor_power(BP.PORT_D, speed + (error * 0.8))
-    elif(sOff < 25):
+    elif(sOff > 12):
         BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
         BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
     else:
