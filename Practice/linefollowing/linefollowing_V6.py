@@ -37,7 +37,7 @@ def config():
                 error = False
             except brickpi3.SensorError:
                 error = True
-    print("Configured Sensor 1.")
+    print("Configured Sensor")
 
 try:
     config()
