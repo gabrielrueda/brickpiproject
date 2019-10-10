@@ -6,8 +6,6 @@ irvalue = 100
 BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
 
 # Sets up a infared sensor - similiar for any other sensors
-BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_INFRARED_PROXIMITY)
-BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_GYRO_ABS_DPS)
 
 
 try:
@@ -15,14 +13,9 @@ try:
     while irvalue > 20:
         
         # Runs Motors A and D
-        BP.set_motor_power(BP.PORT_A, -speed)
-        BP.set_motor_power(BP.PORT_D, -speed)
+        BP.set_motor_power(BP.PORT_A, speed)
+        BP.set_motor_power(BP.PORT_D, (speed*0.95))
 
-        try:
-            irvalue = BP.get_sensor(BP.PORT_4)
-            print(irvalue)
-        except brickpi3.SensorError as error:
-            print("Error")
         
         
         # delay for 0.02 seconds to reduce the Raspberry Pi CPU load.
