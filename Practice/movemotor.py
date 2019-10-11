@@ -14,7 +14,7 @@ try:
         
         # Runs Motors A and D
         BP.set_motor_power(BP.PORT_A, speed)
-        BP.set_motor_power(BP.PORT_D, (speed*0.95))
+        BP.set_motor_power(BP.PORT_D, speed)
 
         
         

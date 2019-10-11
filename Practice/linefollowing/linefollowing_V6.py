@@ -19,8 +19,8 @@ def linefollowing():
     turning(sensor)
 
 def turning(sensor):
-    p = 1.5
-    error = (sensor - 12) * p
+    p = 0.9
+    error = (sensor - 27) * p
     BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
     BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
 

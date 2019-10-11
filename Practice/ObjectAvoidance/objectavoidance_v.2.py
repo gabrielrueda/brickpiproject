@@ -117,7 +117,7 @@ try:
             checkObject()
         else:
             BP.set_motor_power(BP.PORT_A, speed)
-            BP.set_motor_power(BP.PORT_D, (speed*0.95))
+            BP.set_motor_power(BP.PORT_D, speed)
        
         time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 

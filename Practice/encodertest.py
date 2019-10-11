@@ -5,7 +5,7 @@ BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
-encoders = [-160,160,-76,76]
+encoders = [-155,155,1,1]
 
 speed = 20
 
@@ -35,7 +35,7 @@ def turn45right():
 
 try:
     while True:
-        turn45right()
+        turnRight()
         time.sleep(1)
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()   
