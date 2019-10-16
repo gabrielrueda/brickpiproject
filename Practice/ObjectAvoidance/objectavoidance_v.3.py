@@ -1,5 +1,6 @@
 import brickpi3 
 import time
+import drive
 
 speed = 20
 uValueC = 255
@@ -10,66 +11,58 @@ BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+
 def main():
     while True:
         try:
-            uValueC = BP.get_sensor(BP.PORT_2)
-            # print("Center: " + str(uValueC))                        
+            uValueC = BP.get_sensor(BP.PORT_2)               
         except brickpi3.SensorError as error:
             print(error)
-        if(uValueC < 15):
-            turnLeft()
+        if(uValueC < 5):
+            drive.turnLeft90()
+            checkObject()
         else:
-            BP.set_motor_power(BP.PORT_A, speed)
-            BP.set_motor_power(BP.PORT_D, speed)
+            drive.moveForward()
     time.sleep(0.02)
 
 def checkObject():
-    try:
-        uValueR = BP.get_sensor(BP.PORT_4)
-        # print("Right: " + str(uValueR))                        
-    except brickpi3.SensorError as error:
-        print(error)
-
-    while(uValueR < 30):
-        p = 0.9
-        error = (uValueR - 15) * p
+    uValueR = 19
+    while(uValueR < 60):
+        p = -1
+        error = (uValueR - 5) * p
         BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
         BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
         try:
-            uValueR = BP.get_sensor(BP.PORT_4)
-            # print("Center: " + str(uValueR))                        
+            uValueR = BP.get_sensor(BP.PORT_4)                   
         except brickpi3.SensorError as error:
             print(error)
-        print("In the while")
-
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
-    turnRight()
-
-def turnRight():
-    motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
-
-    while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] > encoders[0]):
-        BP.set_motor_power(BP.PORT_A, -speed)
-        BP.set_motor_power(BP.PORT_D, speed)
-        time.sleep(0.02)
     
+    passingTime()
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
+    drive.turnRight90()
 
-def turnLeft():
-    motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
+def passingTime():
+    before = time.time()
+    uValueC = 60
+    while(round(time.time() - before,1) <= 2.1):
+        if(uValueC <= 4):
+            break
+        try:
+            uValueC = BP.get_sensor(BP.PORT_2)               
+        except brickpi3.SensorError as error:
+            print(error)
+        drive.moveForward()
 
-    while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] < encoders[1]):
-        BP.set_motor_power(BP.PORT_A, speed)
-        BP.set_motor_power(BP.PORT_D, -speed)
-        time.sleep(0.02)
-        # print(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0])
-    
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
-
+    # while(round(time.time() - before,1) <= 2.0 or uValueC != 255 or uValueC >= 8):
+    #     drive.moveForward()
+    #     time.sleep(0.02)
+    #     print(round(time.time() - before,1))
+    #     print(uValueC)
+    #     try:
+    #         uValueC = BP.get_sensor(BP.PORT_2)               
+    #     except brickpi3.SensorError as error:
+    #         print(error)
 
 def config():
     try:
@@ -106,4 +99,3 @@ try:
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()   
-
