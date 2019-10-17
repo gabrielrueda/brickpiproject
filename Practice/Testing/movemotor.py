@@ -5,9 +5,6 @@ speed = 20
 irvalue = 100
 BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
 
-# Sets up a infared sensor - similiar for any other sensors
-
-
 try:
 
     while irvalue > 20:
@@ -16,8 +13,6 @@ try:
         BP.set_motor_power(BP.PORT_A, speed * 0.9)
         BP.set_motor_power(BP.PORT_D, speed)
 
-        
-        
         # delay for 0.02 seconds to reduce the Raspberry Pi CPU load.
         time.sleep(0.02) 
 

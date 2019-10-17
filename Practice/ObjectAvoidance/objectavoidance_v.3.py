@@ -18,16 +18,19 @@ def main():
             uValueC = BP.get_sensor(BP.PORT_2)               
         except brickpi3.SensorError as error:
             print(error)
-        if(uValueC < 5):
-            drive.turnLeft90()
-            checkObject()
+        if(uValueC == 0):
+            drive.stop()
         else:
-            drive.moveForward()
+            if(uValueC <= 5):
+                drive.turnLeft90()
+                checkObject()
+            else:
+                drive.moveForward()
     time.sleep(0.02)
 
 def checkObject():
     uValueR = 19
-    while(uValueR < 60):
+    while(uValueR < 20):
         p = -1
         error = (uValueR - 5) * p
         BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
@@ -46,23 +49,13 @@ def passingTime():
     before = time.time()
     uValueC = 60
     while(round(time.time() - before,1) <= 2.1):
-        if(uValueC <= 4):
+        if(uValueC <= 3 or uValueC == 255):
             break
         try:
             uValueC = BP.get_sensor(BP.PORT_2)               
         except brickpi3.SensorError as error:
             print(error)
         drive.moveForward()
-
-    # while(round(time.time() - before,1) <= 2.0 or uValueC != 255 or uValueC >= 8):
-    #     drive.moveForward()
-    #     time.sleep(0.02)
-    #     print(round(time.time() - before,1))
-    #     print(uValueC)
-    #     try:
-    #         uValueC = BP.get_sensor(BP.PORT_2)               
-    #     except brickpi3.SensorError as error:
-    #         print(error)
 
 def config():
     try:

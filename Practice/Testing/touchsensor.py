@@ -7,10 +7,7 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 
 try:
     while True:
-        # read and display the sensor value
-        # BP.get_sensor retrieves a sensor value.
-        # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
-        # BP.get_sensor returns the sensor value (what we want to display).
+
         try:
             value = BP.get_sensor(BP.PORT_1)
             print(value)
