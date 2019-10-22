@@ -1,7 +1,7 @@
 import brickpi3
 import time
 
-speed = 20
+speed = 50
 irvalue = 100
 BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
 

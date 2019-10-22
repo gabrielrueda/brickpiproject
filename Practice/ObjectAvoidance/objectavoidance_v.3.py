@@ -9,8 +9,10 @@ encoders = [-155,155]
 
 BP = brickpi3.BrickPi3()
 
+# pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+
 
 def main():
     while True:
