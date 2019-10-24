@@ -31,21 +31,12 @@ def flagGrab():
 
 # def holdflag():
 #     BP.set_motor_power(BP.PORT_C, -10)
-    
-
 try:
     # before = time.time()
     grabLimit = BP.get_motor_encoder(BP.PORT_C) + 50
     releaseLimit = grabLimit + 1200
     print("Limits are made.")
 
-    # release()
-    # grab()
-    # time.sleep(2)
-    # release()
-    # grab()
-    
-    # BP.set_motor_power(BP.PORT_C, 0)
     pass
 except KeyboardInterrupt: # the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all() 

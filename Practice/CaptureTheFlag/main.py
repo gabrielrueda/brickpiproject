@@ -18,7 +18,7 @@ bridge = True
 
 def main():
     wallfollowing = False
-    clamp.flagGrab()
+    # clamp.flagGrab()
     while True:
         try:
             lightValue = BP.get_sensor(BP.PORT_3)
@@ -39,7 +39,6 @@ def main():
 try:
     config.configAll()
     main()
-
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
