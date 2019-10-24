@@ -33,7 +33,7 @@ def avoidance():
                 return False
 
 def checkObject():
-    print("Running")
+    
     uValueR = 19
     try:
         uValueC = BP.get_sensor(BP.PORT_2)                   
@@ -52,20 +52,18 @@ def checkObject():
 
     if(uValueR > 20):
         passingTime()
-        return True
+        return False
     elif(uValueC <= 5):
         drive.turnLeft90()
-        return True
-    else:
         return False
-        
-
-        
+    else:
+        return True
 
 def passingTime():
     before = time.time()
     uValueC = 60
     while(round(time.time() - before,1) <= 2.1):
+        # print("Running")
         if(uValueC <= 3 or uValueC == 255):
             break
         try:
