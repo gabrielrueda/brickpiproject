@@ -3,11 +3,11 @@ import brickpi3 # import the BrickPi3 drivers
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
+# pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
-BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 
 speed = 30
-
+colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 try:
 
     try:
@@ -25,10 +25,15 @@ try:
     print("Configured.")
     
     while True:
-        # linefollowing()
         try:
-            v = BP.get_sensor(BP.PORT_3)
-            print(v)
+            BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
+            time.sleep(0.02)
+            v1 = BP.get_sensor(BP.PORT_3)
+            BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_COLOR)  
+            time.sleep(0.02)
+            v2 = BP.get_sensor(BP.PORT_3)
+            print(v1)
+            print(colour[v2])
         except brickpi3.SensorError as error:
             print(error)
 

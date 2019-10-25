@@ -29,6 +29,19 @@ def flagGrab():
     drive.stop()
     grab()
 
+def flagRelease():
+    drive.turnLeft90()
+    drive.turnLeft90()
+    drive.moveBackward()
+    time.sleep(1)
+    drive.stop()
+    release()
+    drive.moveForward()
+    time.sleep(1)
+    drive.stop()
+    grab()
+
+
 # def holdflag():
 #     BP.set_motor_power(BP.PORT_C, -10)
 try:

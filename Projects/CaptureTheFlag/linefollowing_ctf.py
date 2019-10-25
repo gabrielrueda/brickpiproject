@@ -9,6 +9,7 @@ BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 speed = 20
 
 def linefollowing():
+    BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
     sensor = 0
     while(sensor < 45):
         try:
