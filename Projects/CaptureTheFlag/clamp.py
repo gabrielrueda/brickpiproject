@@ -41,15 +41,10 @@ def flagRelease():
     drive.stop()
     grab()
 
-
-# def holdflag():
-#     BP.set_motor_power(BP.PORT_C, -10)
 try:
-    # before = time.time()
     grabLimit = BP.get_motor_encoder(BP.PORT_C) + 50
     releaseLimit = grabLimit + 1200
     print("Limits are made.")
-
     pass
 except KeyboardInterrupt: # the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all() 

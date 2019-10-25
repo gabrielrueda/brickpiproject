@@ -13,6 +13,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+
 wallfollowing = False
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
@@ -57,9 +58,7 @@ def main():
             wallfollowing = objectavoidance_ctf.checkObject()
         else:
             wallfollowing = objectavoidance_ctf.avoidance()
-        
-        # print(reflectedValue)
-        # clamp.holdflag()
+
         time.sleep(0.02)
 
 try:

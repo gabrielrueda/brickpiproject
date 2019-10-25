@@ -14,7 +14,6 @@ BP = brickpi3.BrickPi3()
 BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
-
 def avoidance():
         uValueC = 70
         try:
@@ -63,7 +62,7 @@ def passingTime():
     before = time.time()
     uValueC = 60
     while(round(time.time() - before,1) <= 2.1):
-        # print("Running")
+        
         if(uValueC <= 3 or uValueC == 255):
             break
         try:

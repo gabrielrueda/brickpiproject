@@ -19,8 +19,6 @@ def release():
         time.sleep(0.02)
     BP.set_motor_power(BP.PORT_C, 0)
 
-
-
 try:
     before = time.time()
     # grabLimit = BP.get_motor_encoder(BP.PORT_C)
