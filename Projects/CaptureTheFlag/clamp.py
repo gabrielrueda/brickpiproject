@@ -41,6 +41,12 @@ def flagRelease():
     drive.stop()
     grab()
 
+def testSequence():
+    while True:
+        release()
+        grab()
+        time.sleep(2)
+
 try:
     grabLimit = BP.get_motor_encoder(BP.PORT_C) + 50
     releaseLimit = grabLimit + 1200

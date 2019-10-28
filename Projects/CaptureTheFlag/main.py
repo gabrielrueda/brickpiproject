@@ -20,6 +20,7 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 def main():
     wallfollowing = False
     lineCounter = 0
+    clamp.testSequence()
     while True:
         try:
             BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
