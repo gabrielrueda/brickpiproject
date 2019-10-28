@@ -6,7 +6,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 
-speed = 20
+speed = 30
 
 def linefollowing():
     BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
