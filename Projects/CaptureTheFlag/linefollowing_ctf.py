@@ -6,7 +6,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 
-speed = 30
+speed = 20
 
 def linefollowing():
     BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
@@ -21,7 +21,7 @@ def linefollowing():
         turning(sensor)
 
 def turning(sensor):
-    p = 0.6
+    p = 0.8
     error = (sensor - 27) * p
     BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
     BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
