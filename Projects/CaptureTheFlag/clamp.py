@@ -21,6 +21,9 @@ def release():
     BP.set_motor_power(BP.PORT_C, 0)
 
 def flagGrab():
+    drive.moveBackward()
+    time.sleep(1)
+    drive.stop()
     drive.turnLeft90()
     drive.turnLeft90()
     release()
@@ -30,22 +33,19 @@ def flagGrab():
     grab()
 
 def flagRelease():
+    drive.moveBackward()
+    time.sleep(1)
+    drive.stop()
     drive.turnLeft90()
     drive.turnLeft90()
     drive.moveBackward()
-    time.sleep(1)
+    time.sleep(1.5)
     drive.stop()
     release()
     drive.moveForward()
     time.sleep(1)
     drive.stop()
     grab()
-
-def testSequence():
-    while True:
-        release()
-        grab()
-        time.sleep(2)
 
 try:
     grabLimit = BP.get_motor_encoder(BP.PORT_C) + 50

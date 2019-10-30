@@ -19,7 +19,7 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
     wallfollowing = False
-    lineCounter = 0
+    #lineCounter = 0
     while True:
         try:
             BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
@@ -40,13 +40,13 @@ def main():
 
         if(reflectedValue < 27):
             linefollowing_ctf.linefollowing()
-            lineCounter += 1
+            #lineCounter += 1
         
         if(colour[colourValue] == "Yellow"):
-            if(lineCounter % 2 == 1):
-                clamp.flagGrab()
-            else:
-                clamp.flagRelease()
+            # if(lineCounter % 2 == 1):
+            clamp.flagGrab()
+            #else:
+                #clamp.flagRelease()
 
         if(colour[colourValue] == "Red"):
             if(uValueR < 70):

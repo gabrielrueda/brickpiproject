@@ -7,6 +7,7 @@ speed = 20
 uValueC = 255
 uValueR = 255
 encoders = [-155,155]
+colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 BP = brickpi3.BrickPi3()
 
@@ -62,8 +63,13 @@ def passingTime():
     before = time.time()
     uValueC = 60
     while(round(time.time() - before,1) <= 2.1):
-        
-        if(uValueC <= 3 or uValueC == 255):
+        try:
+            BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_COLOR)  
+            colourValue = BP.get_sensor(BP.PORT_3)
+        except brickpi3.SensorError as error:
+            print(error)
+
+        if(uValueC <= 3 or uValueC == 255 or colour[colourValue] == "Red"):
             break
         try:
             uValueC = BP.get_sensor(BP.PORT_2)               
