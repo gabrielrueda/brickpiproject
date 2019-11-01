@@ -63,6 +63,7 @@ def passingTime():
     before = time.time()
     uValueC = 60
     while(round(time.time() - before,1) <= 2.1):
+        colourValue = 0
         try:
             BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_COLOR)  
             colourValue = BP.get_sensor(BP.PORT_3)
