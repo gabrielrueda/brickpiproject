@@ -3,7 +3,7 @@ import time
 
 BP = brickpi3.BrickPi3()
 
-speed = 20
+speed = 30
 encoders = [-155,155]
 
 def moveForward():

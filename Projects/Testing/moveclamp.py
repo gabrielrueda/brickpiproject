@@ -5,7 +5,8 @@ speed = 90
 grabLimit = -300
 releaseLimit = 600
 
-BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
+# BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
+BP = brickpi3.BrickPi3()
 
 def grab():
     while(grabLimit < BP.get_motor_encoder(BP.PORT_C)):
