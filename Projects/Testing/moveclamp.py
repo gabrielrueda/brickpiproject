@@ -25,8 +25,7 @@ try:
     # grabLimit = BP.get_motor_encoder(BP.PORT_C)
     # releaseLimit = grabLimit + 1200
     while(round(time.time() - before,1) <= 2.1):
-        
-        # Runs Motors A and D
+
         BP.set_motor_power(BP.PORT_C, -40)
         print(BP.get_motor_encoder(BP.PORT_C))
 
