@@ -17,7 +17,10 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 def main():
     wallfollowing = False
     drive.turnLeft90()
+    time.sleep(1)
     drive.turnRight90()
+    time.sleep(1)
+    drive.turnLeft90()
     while True:
         drive.moveForward()
         time.sleep(0.02)
