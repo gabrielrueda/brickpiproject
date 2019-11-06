@@ -40,4 +40,4 @@ def configUltrasonic():
                 error = False
             except brickpi3.SensorError:
                 error = True
-    print("Configured Center Utrasonic Sensor")
+    print("Configured Utrasonic Sensor")

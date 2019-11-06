@@ -8,7 +8,6 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 #Sensors
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
-BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
 wallfollowing = False
@@ -19,8 +18,6 @@ def main():
     drive.turnLeft90()
     time.sleep(1)
     drive.turnRight90()
-    time.sleep(1)
-    drive.turnLeft90()
     while True:
         drive.moveForward()
         time.sleep(0.02)
