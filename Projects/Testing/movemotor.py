@@ -5,7 +5,6 @@ speed = 40
 BP = brickpi3.BrickPi3() # Must have this - creates instance of brickpi
 
 try:
-
     while True:
 
         BP.set_motor_power(BP.PORT_A, -speed)
