@@ -17,7 +17,7 @@ try:
     rightLimit = centreEncoder - 50
     leftLimit = centreEncoder + 50
 
-    while BP.get_motor_encoder(BP.PORT_B) < leftLimit:
+    while(BP.get_motor_encoder(BP.PORT_B) < leftLimit):
         BP.set_motor_power(BP.PORT_B, speed)
         time.sleep(0.02)
         print(BP.get_motor_encoder(BP.PORT_B))
