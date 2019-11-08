@@ -1,7 +1,7 @@
 import time
 import brickpi3
 
-speed = 20
+speed = 15
 rightLimit = 0
 leftLimit = 0
 centreEncoder = 0
@@ -26,6 +26,12 @@ def configUltra():
                 error = True
     print("Configured Utrasonic Sensor")
 
+def getUltrasonic():
+    try:
+        return BP.get_sensor(BP.PORT_4)
+    except brickpi3.SensorError as error:
+        print(error)
+        return 0
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
     rightLimit = centreEncoder - 90
@@ -34,13 +40,13 @@ try:
     while(currentEValue < leftLimit):
         BP.set_motor_power(BP.PORT_B, speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        print(currentEValue)
+        print(getUltrasonic())
         time.sleep(0.02)
 
     while(currentEValue > rightLimit):
         BP.set_motor_power(BP.PORT_B, -speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        print(currentEValue)
+        print(getUltrasonic())
         time.sleep(0.02)
 
     while(True):
