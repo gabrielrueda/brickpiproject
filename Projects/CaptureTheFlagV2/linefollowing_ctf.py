@@ -25,4 +25,3 @@ def turning(sensor):
     error = (sensor - 27) * p
     BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))
     BP.set_motor_power(BP.PORT_D, speed - (error * 0.8))
-
