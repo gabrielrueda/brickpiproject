@@ -27,20 +27,23 @@ def configUltra():
     print("Configured Utrasonic Sensor")
 
 try:
-
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-    rightLimit = centreEncoder + 50
-    leftLimit = centreEncoder - 50
+    rightLimit = centreEncoder - 90
+    leftLimit = centreEncoder + 90
     configUltra()
+    while(currentEValue < leftLimit):
+        BP.set_motor_power(BP.PORT_B, speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        print(currentEValue)
+        time.sleep(0.02)
+
+    while(currentEValue > rightLimit):
+        BP.set_motor_power(BP.PORT_B, -speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        print(currentEValue)
+        time.sleep(0.02)
 
     while(True):
-        if(currentEValue > leftLimit):
-            BP.set_motor_power(BP.PORT_B, speed)
-            currentEValue = BP.get_motor_encoder(BP.PORT_B)
-            print(currentEValue)
-        else:
-            break
-        time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B,0)
 
 except KeyboardInterrupt: # the program gets interrupted by Ctrl+C on the keyboard.
