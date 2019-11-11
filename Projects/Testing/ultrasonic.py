@@ -8,7 +8,7 @@ motorDif = [-380,-421]
 BP = brickpi3.BrickPi3()
 
 # pylint: disable=no-member
-BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
 def turn90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
@@ -23,7 +23,7 @@ def turn90():
 try:
     while True:
         try:
-            ultravalue = BP.get_sensor(BP.PORT_2)
+            ultravalue = BP.get_sensor(BP.PORT_4)
             print(ultravalue)
         except brickpi3.SensorError as error:
             print(error)
