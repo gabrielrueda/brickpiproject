@@ -1,2 +1,60 @@
 import brickpi3
 import time
+import drive
+import config
+
+uValue = 255
+speed = 20
+rightLimit = 0
+leftLimit = 0
+centreEncoder = 0
+currentEValue= 0
+
+BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
+
+# pylint: disable=no-member
+BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+
+def avoidance():
+    uValue = 70
+    try:
+        uValue = BP.get_sensor(BP.PORT_4)               
+    except brickpi3.SensorError as error:
+        print(error)
+    if(uValue == 0):
+        drive.stop()
+    elif(uValue <= 5):
+        checkObject()
+    else:
+        drive.moveBackward()
+
+def checkObject():
+    checkLeft()
+    checkRight()
+
+def checkLeft():
+    currentEValue= 0
+    while(currentEValue < leftLimit):
+        BP.set_motor_power(BP.PORT_B, speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        time.sleep(0.02)
+
+def checkRight():
+    currentEValue= 0
+    while(currentEValue > rightLimit):
+        BP.set_motor_power(BP.PORT_B, -speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        time.sleep(0.02)
+
+try:
+    centreEncoder = BP.get_motor_encoder(BP.PORT_B)
+    rightLimit = centreEncoder - 90
+    leftLimit = centreEncoder + 90
+    print("Limits are made.")
+    config.configUltrasonic()
+    while(True):
+        avoidance()
+        while(True):
+            print(uValue)
+except KeyboardInterrupt:
+    BP.reset_all() 
