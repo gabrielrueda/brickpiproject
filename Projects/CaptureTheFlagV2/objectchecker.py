@@ -3,6 +3,7 @@ import time
 import config
 
 BP = brickpi3.BrickPi3()
+# pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
 uValue = 255
@@ -36,7 +37,7 @@ def main():
             time.sleep(0.02)
             if(uValue < 30):
                 break
-        
+        BP.set_motor_power(BP.PORT_B, 0)
         BP.reset_all()
 
 try:
