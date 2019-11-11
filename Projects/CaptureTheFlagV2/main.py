@@ -16,6 +16,7 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
    linefollowing_ctf.linefollowing()
+   BP.reset_all()
 try:
     config.configAll()
     main()

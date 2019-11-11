@@ -1,7 +1,7 @@
 import time
 import brickpi3
 
-speed = 15
+speed = 20
 rightLimit = 0
 leftLimit = 0
 centreEncoder = 0
