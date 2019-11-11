@@ -24,13 +24,17 @@ def avoidance():
     if(uValue == 0):
         drive.stop()
     elif(uValue <= 5):
+        drive.stop()
         checkObject()
     else:
         drive.moveBackward()
+    print(uValue)
 
 def checkObject():
     checkLeft()
     checkRight()
+    returnCenter()
+    BP.set_motor_power(BP.PORT_B, 0)
 
 def checkLeft():
     currentEValue= 0
@@ -46,6 +50,13 @@ def checkRight():
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
 
+def returnCenter():
+    currentEValue= 0
+    while(currentEValue < centreEncoder):
+        BP.set_motor_power(BP.PORT_B, speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        time.sleep(0.02)
+
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
     rightLimit = centreEncoder - 90
@@ -54,7 +65,6 @@ try:
     config.configUltrasonic()
     while(True):
         avoidance()
-        while(True):
-            print(uValue)
+
 except KeyboardInterrupt:
     BP.reset_all() 
