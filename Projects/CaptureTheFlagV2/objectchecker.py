@@ -37,8 +37,9 @@ def main():
             time.sleep(0.02)
             if(uValue < 30):
                 break
-        BP.set_motor_power(BP.PORT_B, 0)
-        BP.reset_all()
+
+    BP.set_motor_power(BP.PORT_B, 0)
+    BP.reset_all()
 
 try:
     config.configAll()
