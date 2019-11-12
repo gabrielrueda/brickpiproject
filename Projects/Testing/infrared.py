@@ -3,12 +3,13 @@ import brickpi3 # import the BrickPi3 drivers
 
 BP = brickpi3.BrickPi3() 
 
+# pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_2, BP.SENSOR_TYPE.EV3_INFRARED_PROXIMITY)
 
 try:
     while True:
         try:
-            print(BP.get_sensor(BP.PORT_2))   # print the infrared value
+            print(BP.get_sensor(BP.PORT_2))
         except brickpi3.SensorError as error:
             print(error)
         
