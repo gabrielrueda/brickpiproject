@@ -8,7 +8,9 @@ speed = 20
 rightLimit = 0
 leftLimit = 0
 centreEncoder = 0
-currentEValue= 0
+currentEValue = 0
+leftDistance = 0
+rightDistance = 0
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -23,12 +25,12 @@ def avoidance():
         print(error)
     if(uValue == 0):
         drive.stop()
-    elif(uValue <= 5):
+    elif(uValue <= 15):
         drive.stop()
         checkObject()
     else:
         drive.moveBackward()
-    print(uValue)
+    #print(uValue)
 
 def checkObject():
     checkLeft()
@@ -42,6 +44,7 @@ def checkLeft():
         BP.set_motor_power(BP.PORT_B, speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
+        leftDistance == getUltrasonic()
 
 def checkRight():
     currentEValue= 0
@@ -49,6 +52,7 @@ def checkRight():
         BP.set_motor_power(BP.PORT_B, -speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
+        rightDistance == getUltrasonic()
 
 def returnCenter():
     currentEValue= 0
@@ -56,6 +60,15 @@ def returnCenter():
         BP.set_motor_power(BP.PORT_B, speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
+    print(leftDistance)
+    print(rightDistance)
+
+def getUltrasonic():
+    try:
+        return BP.get_sensor(BP.PORT_4)
+    except brickpi3.SensorError as error:
+        print(error)
+        return 0
 
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
