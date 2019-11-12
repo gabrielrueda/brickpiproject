@@ -8,12 +8,12 @@ turnSpeed = 50
 encoders = [100,100]
 
 def moveForward():
-    BP.set_motor_power(BP.PORT_A, speed)
-    BP.set_motor_power(BP.PORT_D, speed)
-
-def moveBackward():
     BP.set_motor_power(BP.PORT_A, -speed)
     BP.set_motor_power(BP.PORT_D, -speed)
+
+def moveBackward():
+    BP.set_motor_power(BP.PORT_A, speed)
+    BP.set_motor_power(BP.PORT_D, speed)
 
 def turnRight90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
@@ -36,6 +36,10 @@ def turnLeft90():
     
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
+
+def turnCustom(leftPower,rightPower):
+    BP.set_motor_power(BP.PORT_A, leftPower)
+    BP.set_motor_power(BP.PORT_D, rightPower)
 
 def stop():
     BP.set_motor_power(BP.PORT_A, 0)
