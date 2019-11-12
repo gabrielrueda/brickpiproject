@@ -1,6 +1,7 @@
 import brickpi3
 import time
 import config
+import drive
 
 BP = brickpi3.BrickPi3()
 # pylint: disable=no-member
@@ -37,7 +38,13 @@ def main():
             time.sleep(0.02)
             if(uValue < 30):
                 break
-
+    
+    BP.set_motor_power(BP.PORT_B, 0)
+    if(centreEncoder < currentEValue):
+        drive.turnCustom(0,40)
+    else:
+        drive.turnCustom(40,0)
+    
     BP.set_motor_power(BP.PORT_B, 0)
     BP.reset_all()
 
