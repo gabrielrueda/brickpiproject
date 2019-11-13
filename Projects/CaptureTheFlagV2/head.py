@@ -27,7 +27,7 @@ def returnCenter():
             time.sleep(0.02)
 
 def turnLeft():
-    print("Left")
+    print("Left.")
     currentEValue= 0
     while(currentEValue < leftLimit):
         BP.set_motor_power(BP.PORT_B, speed)
@@ -41,4 +41,3 @@ def turnRight():
         BP.set_motor_power(BP.PORT_B, -speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
-
