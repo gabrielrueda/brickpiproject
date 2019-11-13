@@ -34,23 +34,24 @@ def getUltrasonic():
         return 0
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-    rightLimit = centreEncoder - 90
-    leftLimit = centreEncoder + 90
+    rightLimit = centreEncoder - 107
+    leftLimit = centreEncoder + 107
     configUltra()
-    while(currentEValue < leftLimit):
-        BP.set_motor_power(BP.PORT_B, speed)
-        currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        print(getUltrasonic())
-        time.sleep(0.02)
-
     while(currentEValue > rightLimit):
         BP.set_motor_power(BP.PORT_B, -speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         print(getUltrasonic())
         time.sleep(0.02)
 
+    while(currentEValue < leftLimit):
+        BP.set_motor_power(BP.PORT_B, speed)
+        currentEValue = BP.get_motor_encoder(BP.PORT_B)
+        print(getUltrasonic())
+        time.sleep(0.02)
+
     while(True):
-        BP.set_motor_power(BP.PORT_B,0)
+        BP.set_motor_power(BP.PORT_B,7)
+        print("Press CTRL+C")
 
 except KeyboardInterrupt: # the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all() 

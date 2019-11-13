@@ -3,6 +3,8 @@ import config
 import time     
 import brickpi3
 import linefollowing_ctf
+import objectavoidance
+import head
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -15,8 +17,11 @@ BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
-   linefollowing_ctf.linefollowing()
-   BP.reset_all()
+    head.limits(107,107)
+    # linefollowing_ctf.linefollowing()
+    while(True):
+        objectavoidance.avoidance()
+    BP.reset_all()
 try:
     config.configAll()
     main()
