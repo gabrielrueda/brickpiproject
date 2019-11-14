@@ -6,14 +6,13 @@ leftLimit = 0
 rightLimit = 0
 centreEncoder = 0
 speed = 60
-
-def limits(left, right):
-    centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-    leftLimit = BP.get_motor_encoder(BP.PORT_B) + left
-    rightLimit = BP.get_motor_encoder(BP.PORT_B) - right
+class Head:
+    def __init__(self, lLimit, rLimit):
+        centreEncoder = BP.get_motor_encoder(BP.PORT_B)
+        leftLimit = BP.get_motor_encoder(BP.PORT_B) + lLimit
+        rightLimit = BP.get_motor_encoder(BP.PORT_B) - rLimit
 
 def returnCenter():
-    print("Centre")
     currentEValue= BP.get_motor_encoder(BP.PORT_B)
     if(currentEValue > centreEncoder):
         while(currentEValue > centreEncoder):
@@ -27,16 +26,15 @@ def returnCenter():
             time.sleep(0.02)
 
 def turnLeft():
-    print("Left.")
-    currentEValue= 0
+    currentEValue= BP.get_motor_encoder(BP.PORT_B)
     while(currentEValue < leftLimit):
         BP.set_motor_power(BP.PORT_B, speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         time.sleep(0.02)
 
 def turnRight():
-    print("Left Limit:" + str(leftLimit))
-    currentEValue= 0
+    print(rightLimit)
+    currentEValue= BP.get_motor_encoder(BP.PORT_B)
     while(currentEValue > rightLimit):
         BP.set_motor_power(BP.PORT_B, -speed)
         currentEValue = BP.get_motor_encoder(BP.PORT_B)

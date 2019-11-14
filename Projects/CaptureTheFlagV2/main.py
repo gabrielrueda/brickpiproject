@@ -17,7 +17,7 @@ BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
-    head.limits(107,107)
+    head.Head(107,107)
     # linefollowing_ctf.linefollowing()
     while(True):
         objectavoidance.avoidance()
