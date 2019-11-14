@@ -6,7 +6,7 @@ BP = brickpi3.BrickPi3()
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
-encoders = [225,225,1,1]
+encoders = [745,745,1,1]
 
 speed = 50
 turnSpeed = 50
