@@ -14,6 +14,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
+h = head.Head(107,107)
 def avoidance():
         uValue = 70
         uValue = getUltrasonic()
@@ -23,9 +24,9 @@ def avoidance():
             if(uValue <= 5):
                 #INSERT DIRECTION RANDOMIZER
                 drive.turnLeft90()
-                head.turnRight()
+                h.turnRight()
                 time.sleep(1)
-                head.returnCenter()
+                h.returnCenter()
             else:
                 drive.moveForward()
 
