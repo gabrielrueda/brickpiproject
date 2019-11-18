@@ -18,8 +18,9 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
     # linefollowing_ctf.linefollowing()
+    o = objectavoidance.avoidanceofObjects()
     while(True):
-        objectavoidance.avoidance()
+        o.main()
     BP.reset_all()
 try:
     config.configAll()
