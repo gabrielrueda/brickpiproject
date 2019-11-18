@@ -5,7 +5,7 @@ BP = brickpi3.BrickPi3()
 
 speed = 30
 turnSpeed = 50
-encoders = [745,-745]
+encoders = [-750,750]
 
 def moveForward():
     BP.set_motor_power(BP.PORT_A, -speed)
@@ -15,9 +15,9 @@ def moveBackward():
     BP.set_motor_power(BP.PORT_A, speed)
     BP.set_motor_power(BP.PORT_D, speed)
 
-def turnRight90():
+def turnLeft90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
-    while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] < encoders[0]):
+    while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] > encoders[0]):
         print(BP.get_motor_encoder(BP.PORT_A))
         BP.set_motor_power(BP.PORT_A, -turnSpeed)
         BP.set_motor_power(BP.PORT_D, turnSpeed)
@@ -26,9 +26,9 @@ def turnRight90():
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
 
-def turnLeft90():
+def turnRight90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
-    while(BP.get_motor_encoder(BP.PORT_D) - motorsPos[0] < encoders[1]):
+    while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] < encoders[1]):
         print(BP.get_motor_encoder(BP.PORT_A))
         BP.set_motor_power(BP.PORT_A, turnSpeed)
         BP.set_motor_power(BP.PORT_D, -turnSpeed)
