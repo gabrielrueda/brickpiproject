@@ -62,9 +62,9 @@ class avoidanceofObjects:
 
     def aroundObject(self):
         if(self.direction == 0):
-            drive.turnCustom(20,60)
+            drive.pivotTurn(10,30)
         else:
-            drive.turnCustom(60,20)
+            drive.pivotTurn(30,10)
 
     def getUltrasonic(self):
         try:
