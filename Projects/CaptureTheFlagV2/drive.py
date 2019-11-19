@@ -5,7 +5,7 @@ BP = brickpi3.BrickPi3()
 
 speed = 30
 turnSpeed = 50
-encoders = [-750,750,-1700,-1700]
+encoders = [-750,750,-2250,-2250]
 
 def moveForward():
     BP.set_motor_power(BP.PORT_A, -speed)
