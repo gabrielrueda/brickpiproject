@@ -42,15 +42,21 @@ def turnCustom(leftPower,rightPower):
     BP.set_motor_power(BP.PORT_D, -rightPower)
 
 def pivotTurn(leftPower,rightPower):
+    # checks whether it will turn left or right
     if(leftPower > rightPower):
+        # Motor pos is the original encoder position
         motorPos = BP.get_motor_encoder(BP.PORT_A)
+        # while motor has not reached encoder postion - Port A is left side
         while(BP.get_motor_encoder(BP.PORT_A) - motorPos < encoders[2]):
+            # Moves motors according to the parameters - in this case leftpower = 30 and right power = 10
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             print(BP.get_motor_encoder(BP.PORT_A) - motorPos)
     else:
         motorPos = BP.get_motor_encoder(BP.PORT_D)
+        # while motor has not reached encoder postion - Port D is right side
         while(BP.get_motor_encoder(BP.PORT_D) - motorPos < encoders[3]):
+            # Moves motors according to the parameters - in this case leftpower = 10 and right power = 30
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             print(BP.get_motor_encoder(BP.PORT_D) - motorPos)
