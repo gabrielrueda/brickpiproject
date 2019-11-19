@@ -38,8 +38,8 @@ def turnRight90():
     BP.set_motor_power(BP.PORT_D, 0)
 
 def turnCustom(leftPower,rightPower):
-    BP.set_motor_power(BP.PORT_A, leftPower)
-    BP.set_motor_power(BP.PORT_D, rightPower)
+    BP.set_motor_power(BP.PORT_A, -leftPower)
+    BP.set_motor_power(BP.PORT_D, -rightPower)
 
 def stop():
     BP.set_motor_power(BP.PORT_A, 0)

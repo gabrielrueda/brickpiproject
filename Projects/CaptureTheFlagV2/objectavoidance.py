@@ -3,6 +3,7 @@ import time
 import drive
 import config
 import head
+import random
 
 speed = 20
 uValue = 255
@@ -15,6 +16,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 class avoidanceofObjects:
     BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
     switcher = 0
+    direction = 0
     h = head.Head(120,107)
     def main(self):
         if(self.switcher == 0):
@@ -22,10 +24,9 @@ class avoidanceofObjects:
         elif(self.switcher == 1):
             self.checkObject()
         elif(self.switcher == 2):
-            pass
+            self.aroundObject()
         else:
             print("Error")
-
 
     def avoidance(self):
             uValue = 70
@@ -34,9 +35,14 @@ class avoidanceofObjects:
                 drive.stop()
             else:
                 if(uValue <= 5):
-                    #INSERT DIRECTION RANDOMIZER
-                    drive.turnLeft90()
-                    self.h.turnRight()
+                    self.direction = random.randint(0, 1)
+                    if(self.direction == 0):
+                        drive.turnLeft90()
+                        self.h.turnRight()
+                    else:
+                        drive.turnRight90()
+                        self.h.turnLeft()  
+                    
                     self.switcher = 1
                 else:
                     drive.moveForward()
@@ -51,34 +57,14 @@ class avoidanceofObjects:
         BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
         print(uValue)
 
-        # if(uValue > 20):
-        #     # passingTime()
+        if(uValue > 30):
+            self.switcher = 2
 
-        # elif(uValue <= 5):
-        #     drive.turnLeft90()
-
-    # def passingTime():
-    #     before = time.time()
-    #     uValueC = 60
-    #     while(round(time.time() - before,1) <= 2.1):
-    #         colourValue = 0
-    #         try:
-    #             BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_COLOR)  
-    #             colourValue = BP.get_sensor(BP.PORT_3)
-    #         except brickpi3.SensorError as error:
-    #             print(error)
-
-    #         if(uValueC <= 3 or uValueC == 255 or colour[colourValue] == "Red"):
-    #             break
-    #         try:
-    #             uValueC = BP.get_sensor(BP.PORT_2)               
-    #         except brickpi3.SensorError as error:
-    #             print(error)
-    #         drive.moveForward()
-
-    #     BP.set_motor_power(BP.PORT_A, 0)
-    #     BP.set_motor_power(BP.PORT_D, 0)
-    #     drive.turnRight90()
+    def aroundObject(self):
+        if(self.direction == 0):
+            drive.turnCustom(20,60)
+        else:
+            drive.turnCustom(60,20)
 
     def getUltrasonic(self):
         try:
