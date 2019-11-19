@@ -5,7 +5,7 @@ BP = brickpi3.BrickPi3()
 
 speed = 30
 turnSpeed = 50
-encoders = [-750,750,-200,-200]
+encoders = [-750,750,-1000,-1000]
 
 def moveForward():
     BP.set_motor_power(BP.PORT_A, -speed)
@@ -44,22 +44,21 @@ def turnCustom(leftPower,rightPower):
 def pivotTurn(leftPower,rightPower):
     # checks whether it will turn left or right
     if(leftPower > rightPower):
-        # Motor pos is the original encoder position
         motorPos = BP.get_motor_encoder(BP.PORT_A)
         # while motor has not reached encoder postion - Port A is left side
-        while(BP.get_motor_encoder(BP.PORT_A) - motorPos < encoders[2]):
-            # Moves motors according to the parameters - in this case leftpower = 30 and right power = 10
+        while(BP.get_motor_encoder(BP.PORT_A) - motorPos > encoders[2]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
-            print(BP.get_motor_encoder(BP.PORT_A) - motorPos)
+            print(BP.get_motor_encoder(BP.PORT_A))
     else:
         motorPos = BP.get_motor_encoder(BP.PORT_D)
         # while motor has not reached encoder postion - Port D is right side
-        while(BP.get_motor_encoder(BP.PORT_D) - motorPos < encoders[3]):
-            # Moves motors according to the parameters - in this case leftpower = 10 and right power = 30
+        while(BP.get_motor_encoder(BP.PORT_D) - motorPos > encoders[3]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
-            print(BP.get_motor_encoder(BP.PORT_D) - motorPos)
+            print(BP.get_motor_encoder(BP.PORT_D))
+    BP.set_motor_power(BP.PORT_A, 0)
+    BP.set_motor_power(BP.PORT_D, 0)
 
 def stop():
     BP.set_motor_power(BP.PORT_A, 0)

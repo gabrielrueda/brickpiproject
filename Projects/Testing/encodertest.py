@@ -46,6 +46,8 @@ def turn45right():
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
 
+
+
 try:
     while True:
         turnLeft90()
