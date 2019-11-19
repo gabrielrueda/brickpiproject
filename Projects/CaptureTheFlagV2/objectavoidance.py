@@ -65,6 +65,8 @@ class avoidanceofObjects:
             drive.pivotTurn(10,30)
         else:
             drive.pivotTurn(30,10)
+        
+        self.switcher = 0
 
     def getUltrasonic(self):
         try:
