@@ -64,6 +64,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
+        #Comment
         if(uValue > 40):
             self.switcher = 2
             self.h.returnCenter()
