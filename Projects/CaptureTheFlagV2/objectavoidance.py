@@ -36,7 +36,9 @@ class avoidanceofObjects:
                 if(uValue <= 3):
                     # self.direction = random.randint(0, 1)
                     if(self.direction == 0):
-                        drive.turnLeft90()
+                        drive.turnLeft45()
+                        drive.pivotTurn45(30,10)
+                        print("Done Turn")
                         self.h.turnRight()
                         time.sleep(0.5)
                     else:
@@ -66,10 +68,11 @@ class avoidanceofObjects:
     def aroundObject(self):
         if(self.direction == 0):
             time.sleep(0.5)
-            drive.pivotTurn(10,30)
+            drive.pivotTurn90(10,30)
         else:
             time.sleep(0.5)
-            drive.pivotTurn(30,10)
+
+            drive.pivotTurn90(30,10)
         
         self.switcher = 0
 
