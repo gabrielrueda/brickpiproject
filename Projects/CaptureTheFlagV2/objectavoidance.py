@@ -8,7 +8,6 @@ import random
 speed = 20
 uValue = 255
 encoders = [-155,155]
-colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -34,14 +33,16 @@ class avoidanceofObjects:
             if(uValue == 0):
                 drive.stop()
             else:
-                if(uValue <= 5):
-                    self.direction = random.randint(0, 1)
+                if(uValue <= 3):
+                    # self.direction = random.randint(0, 1)
                     if(self.direction == 0):
                         drive.turnLeft90()
                         self.h.turnRight()
+                        time.sleep(0.5)
                     else:
                         drive.turnRight90()
-                        self.h.turnLeft()  
+                        self.h.turnLeft()   
+                        time.sleep(0.5)
                     
                     self.switcher = 1
                 else:
@@ -52,18 +53,22 @@ class avoidanceofObjects:
         uValue = self.getUltrasonic()
 
         p = -1
-        error = (uValue - 17) * p
+        error = (uValue - 10) * p
         BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
         BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
         print(uValue)
 
-        if(uValue > 30):
+        if(uValue > 60):
             self.switcher = 2
+            self.h.returnCenter()
+            drive.moveForward()
 
     def aroundObject(self):
         if(self.direction == 0):
+            time.sleep(0.5)
             drive.pivotTurn(10,30)
         else:
+            time.sleep(0.5)
             drive.pivotTurn(30,10)
         
         self.switcher = 0
