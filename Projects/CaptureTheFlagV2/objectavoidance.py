@@ -34,7 +34,7 @@ class avoidanceofObjects:
                 drive.stop()
             else:
                 if(uValue <= 3):
-                    # self.direction = random.randint(0, 1)
+                    self.direction = random.randint(0, 1)
                     if(self.direction == 0):
                         drive.turnLeft45()
                         drive.pivotTurn45(30,10)
