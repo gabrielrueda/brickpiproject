@@ -39,12 +39,12 @@ class avoidanceofObjects:
                         drive.turnLeft45()
                         drive.pivotTurn45(30,10)
                         self.h.turnRight()
-                        time.sleep(0.5)
+                        time.sleep(1)
                     else:
                         drive.turnRight45()
                         drive.pivotTurn45(10,30)
                         self.h.turnLeft()   
-                        time.sleep(0.5)
+                        time.sleep(1)
                     
                     self.switcher = 1
                 else:
@@ -56,8 +56,12 @@ class avoidanceofObjects:
 
         p = -1
         error = (uValue - 10) * p
-        BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
-        BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
+        if(self.direction == 0):
+            BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
+            BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
+        else:
+            BP.set_motor_power(BP.PORT_A, -speed + (error * 0.8))
+            BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
         if(uValue > 60):
@@ -68,11 +72,10 @@ class avoidanceofObjects:
     def aroundObject(self):
         if(self.direction == 0):
             time.sleep(0.5)
-            drive.pivotTurn90(10,30)
+            drive.pivotTurn90(20,40)
         else:
             time.sleep(0.5)
-
-            drive.pivotTurn90(30,10)
+            drive.pivotTurn90(40,20)
         
         self.switcher = 0
 
