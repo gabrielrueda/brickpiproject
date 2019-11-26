@@ -5,7 +5,8 @@ BP = brickpi3.BrickPi3()
 
 speed = 30
 turnSpeed = 50
-encoders = [-750,750,-2400,-2400,-375,375,-900,-900]
+# encoders = [-750,750,-2400,-2400,-375,375,-900,-900]
+encoders = [-750,750,-2750,-1700,-375,375,-900,-900]
 
 def moveForward():
     BP.set_motor_power(BP.PORT_A, -speed)
@@ -65,17 +66,14 @@ def turnCustom(leftPower,rightPower):
     BP.set_motor_power(BP.PORT_D, -rightPower)
 
 def pivotTurn45(leftPower,rightPower):
-    # checks whether it will turn left or right
     if(leftPower > rightPower):
         motorPos = BP.get_motor_encoder(BP.PORT_A)
-        # while motor has not reached encoder postion - Port A is left side
         while(BP.get_motor_encoder(BP.PORT_A) - motorPos > encoders[6]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             #print(BP.get_motor_encoder(BP.PORT_A))
     else:
         motorPos = BP.get_motor_encoder(BP.PORT_D)
-        # while motor has not reached encoder postion - Port D is right side
         while(BP.get_motor_encoder(BP.PORT_D) - motorPos > encoders[7]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
@@ -85,17 +83,14 @@ def pivotTurn45(leftPower,rightPower):
 
 
 def pivotTurn90(leftPower,rightPower):
-    # checks whether it will turn left or right
     if(leftPower > rightPower):
         motorPos = BP.get_motor_encoder(BP.PORT_A)
-        # while motor has not reached encoder postion - Port A is left side
         while(BP.get_motor_encoder(BP.PORT_A) - motorPos > encoders[2]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             #print(BP.get_motor_encoder(BP.PORT_A))
     else:
         motorPos = BP.get_motor_encoder(BP.PORT_D)
-        # while motor has not reached encoder postion - Port D is right side
         while(BP.get_motor_encoder(BP.PORT_D) - motorPos > encoders[3]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)

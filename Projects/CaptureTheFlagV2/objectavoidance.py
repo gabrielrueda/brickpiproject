@@ -15,7 +15,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 class avoidanceofObjects:
     BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
     switcher = 0
-    direction = 1
+    direction = 0
     h = head.Head(120,107)
     def main(self):
         if(self.switcher == 0):
@@ -34,7 +34,7 @@ class avoidanceofObjects:
                 drive.stop()
             else:
                 if(uValue <= 3):
-                    # self.direction = random.randint(0, 1)
+                    self.direction = random.randint(0, 1)
                     if(self.direction == 0):
                         drive.turnLeft45()
                         drive.pivotTurn45(30,10)
@@ -72,7 +72,8 @@ class avoidanceofObjects:
     def aroundObject(self):
         if(self.direction == 0):
             time.sleep(0.5)
-            drive.pivotTurn90(20,40)
+            # drive.pivotTurn90(20,40)
+            drive.pivotTurn90(15,40)
         else:
             time.sleep(0.5)
             drive.pivotTurn90(40,20)
