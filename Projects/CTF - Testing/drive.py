@@ -81,32 +81,32 @@ def pivotTurn45(leftPower,rightPower):
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
 
-# def revPivotTurn45(leftPower,rightPower):
-#     if(leftPower < rightPower):
-#         motorPos = BP.get_motor_encoder(BP.PORT_A)
-#         while(BP.get_motor_encoder(BP.PORT_A) - motorPos < -encoders[6]):
-#             BP.set_motor_power(BP.PORT_A, -leftPower)
-#             BP.set_motor_power(BP.PORT_D, -rightPower)
-#             #print(BP.get_motor_encoder(BP.PORT_A))
-#     else:
-#         motorPos = BP.get_motor_encoder(BP.PORT_D)
-#         while(BP.get_motor_encoder(BP.PORT_D) - motorPos < -encoders[7]):
-#             BP.set_motor_power(BP.PORT_A, -leftPower)
-#             BP.set_motor_power(BP.PORT_D, -rightPower)
-#             #print(BP.get_motor_encoder(BP.PORT_D))
-#     BP.set_motor_power(BP.PORT_A, 0)
-#     BP.set_motor_power(BP.PORT_D, 0)
-
-def pivotTurn90(leftPower,rightPower):
-    if(leftPower > rightPower):
+def revPivotTurn45(leftPower,rightPower):
+    if(leftPower < rightPower):
         motorPos = BP.get_motor_encoder(BP.PORT_A)
-        while(BP.get_motor_encoder(BP.PORT_A) - motorPos > encoders[2]):
+        while(BP.get_motor_encoder(BP.PORT_A) - motorPos < -encoders[6]):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             #print(BP.get_motor_encoder(BP.PORT_A))
     else:
         motorPos = BP.get_motor_encoder(BP.PORT_D)
-        while(BP.get_motor_encoder(BP.PORT_D) - motorPos > encoders[3]):
+        while(BP.get_motor_encoder(BP.PORT_D) - motorPos < -encoders[7]):
+            BP.set_motor_power(BP.PORT_A, -leftPower)
+            BP.set_motor_power(BP.PORT_D, -rightPower)
+            #print(BP.get_motor_encoder(BP.PORT_D))
+    BP.set_motor_power(BP.PORT_A, 0)
+    BP.set_motor_power(BP.PORT_D, 0)
+
+def pivotTurn90(leftPower,rightPower,encoder):
+    if(leftPower > rightPower):
+        motorPos = BP.get_motor_encoder(BP.PORT_A)
+        while(BP.get_motor_encoder(BP.PORT_A) - motorPos > encoder):
+            BP.set_motor_power(BP.PORT_A, -leftPower)
+            BP.set_motor_power(BP.PORT_D, -rightPower)
+            #print(BP.get_motor_encoder(BP.PORT_A))
+    else:
+        motorPos = BP.get_motor_encoder(BP.PORT_D)
+        while(BP.get_motor_encoder(BP.PORT_D) - motorPos > encoders):
             BP.set_motor_power(BP.PORT_A, -leftPower)
             BP.set_motor_power(BP.PORT_D, -rightPower)
             #print(BP.get_motor_encoder(BP.PORT_D))

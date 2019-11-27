@@ -30,15 +30,23 @@ class avoidanceofObjects:
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
+            self.h.Scan()
             if(uValue == 0):
                 drive.stop()
             else:
                 if(uValue <= 3):
                     # self.direction = random.randint(0, 1)
                     if(self.direction == 0):
-                        drive.turnLeft45()
-                        drive.pivotTurn45(0,30)
+                        # drive.revPivotTurn45(0,-30)
+                        # drive.pivotTurn45(30,0)
+                        drive.pivotTurn90(40,-20,-1000)
                         self.h.turnRight()
+                        uValue = self.getUltrasonic()
+                        if(uValue < 5 or uValue > 30):
+                            drive.moveBackward()
+                            time.sleep(0.7)
+                            drive.stop() 
+
                         time.sleep(1)
                     else:
                         drive.turnRight45()
@@ -73,10 +81,10 @@ class avoidanceofObjects:
         if(self.direction == 0):
             time.sleep(0.5)
             # drive.pivotTurn90(20,40)
-            drive.pivotTurn90(20,40)
+            drive.pivotTurn90(20,40,-2400)
         else:
             time.sleep(0.5)
-            drive.pivotTurn90(40,20)
+            drive.pivotTurn90(40,20,-2400)
         
         self.switcher = 0
 

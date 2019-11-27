@@ -35,6 +35,17 @@ class Head:
             time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
 
+    def turnLeftScan(self):
+        currentEValue= BP.get_motor_encoder(BP.PORT_B)
+        if(currentEValue > self.leftLimit):
+            BP.set_motor_power(BP.PORT_B, speed)
+            currentEValue = BP.get_motor_encoder(BP.PORT_B)
+            time.sleep(0.02)
+            return True
+        else:
+            BP.set_motor_power(BP.PORT_B, 0)
+            return False
+
     def turnRight(self):
         currentEValue= BP.get_motor_encoder(BP.PORT_B)
         while(currentEValue > self.rightLimit):
@@ -42,3 +53,30 @@ class Head:
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
+    
+    def turnRightScan(self):
+        currentEValue= BP.get_motor_encoder(BP.PORT_B)
+        if(currentEValue < self.rightLimit):
+            BP.set_motor_power(BP.PORT_B, -speed)
+            currentEValue = BP.get_motor_encoder(BP.PORT_B)
+            time.sleep(0.02)
+            return True
+        else:
+            return False
+            BP.set_motor_power(BP.PORT_B, 0)
+
+    def Scan(self):
+        left = True
+        right = False
+        if(left == True):
+            left = self.turnLeftScan()
+            print("Turning Left")
+        elif(right == True):
+            right = self.turnRightScan()
+            print("Turning Right")
+        elif(left == False):
+            right = True
+            print("Stuck L = False")
+        elif(right == False):
+            left = False
+            print("Stuck R = False")
