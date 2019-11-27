@@ -1,3 +1,4 @@
+# Run on brickpi
 import os
 hostname = "192.168.0.104"
 response = os.system("ping -c 1 " + hostname)
