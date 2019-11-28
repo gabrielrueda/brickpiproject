@@ -39,6 +39,7 @@ class avoidanceofObjects:
                     if(self.direction == 0):
                         # drive.revPivotTurn45(0,-30)
                         # drive.pivotTurn45(30,0)
+                        self.h.stop()
                         drive.pivotTurn90(40,-20,-1000)
                         self.h.turnRight()
                         uValue = self.getUltrasonic()
@@ -49,6 +50,7 @@ class avoidanceofObjects:
 
                         time.sleep(1)
                     else:
+                        self.h.stop()
                         drive.turnRight45()
                         drive.pivotTurn45(10,30)
                         self.h.turnLeft()   

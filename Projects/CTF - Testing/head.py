@@ -6,10 +6,11 @@ leftLimit = 0
 rightLimit = 0
 centreEncoder = 0
 speed = 60
+direction = 0
 class Head:
-    direction = 0
     def __init__(self, leftLimit, rightLimit):
         self.centreEncoder = BP.get_motor_encoder(BP.PORT_B)
+        self.direction = 0
         self.leftLimit = BP.get_motor_encoder(BP.PORT_B) + leftLimit
         self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - rightLimit
 
@@ -39,7 +40,7 @@ class Head:
     def turnLeftScan(self):
         currentEValue= BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue < self.leftLimit):
-            BP.set_motor_power(BP.PORT_B, speed)
+            BP.set_motor_power(BP.PORT_B, (speed*0.8))
             return 0
         else:
             BP.set_motor_power(BP.PORT_B, 0)
@@ -56,7 +57,7 @@ class Head:
     def turnRightScan(self):
         currentEValue= BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.rightLimit):
-            BP.set_motor_power(BP.PORT_B, -speed)
+            BP.set_motor_power(BP.PORT_B, -(speed*0.8))
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
             return 1
@@ -71,3 +72,6 @@ class Head:
         else:
             self.direction = self.turnRightScan()
             print("Head R:" + str(self.direction))
+    
+    def stop(self):
+        BP.set_motor_power(BP.PORT_B, 0)
