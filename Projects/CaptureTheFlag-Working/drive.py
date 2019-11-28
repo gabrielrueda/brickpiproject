@@ -23,8 +23,7 @@ def turnLeft90():
         BP.set_motor_power(BP.PORT_D, turnSpeed)
         time.sleep(0.02)
     
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
+    stop()
 
 def turnLeft45():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
@@ -33,8 +32,7 @@ def turnLeft45():
         BP.set_motor_power(BP.PORT_D, turnSpeed)
         time.sleep(0.02)
     
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
+    stop()
 
 def turnRight90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
@@ -43,8 +41,7 @@ def turnRight90():
         BP.set_motor_power(BP.PORT_D, -turnSpeed)
         time.sleep(0.02)
     
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
+    stop()
 
 def turnRight45():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
@@ -52,10 +49,8 @@ def turnRight45():
         BP.set_motor_power(BP.PORT_A, turnSpeed)
         BP.set_motor_power(BP.PORT_D, -turnSpeed)
         time.sleep(0.02)
-    
-    BP.set_motor_power(BP.PORT_A, 0)
-    BP.set_motor_power(BP.PORT_D, 0)
 
+    stop()
 
 def turnCustom(leftPower,rightPower):
     BP.set_motor_power(BP.PORT_A, -leftPower)
