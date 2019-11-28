@@ -31,6 +31,7 @@ class avoidanceofObjects:
             uValue = 70
             uValue = self.getUltrasonic()
             self.h.Scan()
+            print("uValue:" + str(uValue))
             if(uValue == 0):
                 drive.stop()
             else:
@@ -58,7 +59,8 @@ class avoidanceofObjects:
                     
                     self.switcher = 1
                 else:
-                    drive.moveForward()
+                    pass
+                    # drive.moveForward()
 
     def checkObject(self):
 
