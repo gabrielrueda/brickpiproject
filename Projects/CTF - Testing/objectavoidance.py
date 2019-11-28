@@ -59,8 +59,7 @@ class avoidanceofObjects:
                     
                     self.switcher = 1
                 else:
-                    pass
-                    # drive.moveForward()
+                    drive.moveForward()
 
     def checkObject(self):
 
