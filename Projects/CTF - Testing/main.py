@@ -14,7 +14,6 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
-
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
 def main():
@@ -24,7 +23,9 @@ def main():
         if(colour[getColour()] == "Yellow"):
             clamp.flagGrab()
         if(getReflected() < 27):
+            BP.set_motor_power(BP.PORT_B, 0)
             linefollowing_ctf.linefollowing()
+            
         time.sleep(0.02)
 
     BP.reset_all()
