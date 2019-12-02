@@ -1,7 +1,8 @@
 # simple inquiry example
-from bluetooth import *
+import bluetooth
 
 nearby_devices = bluetooth.discover_devices(lookup_names=True)
+# nearby_devices = discover_devices(lookup_names=True)
 print("Found {} devices.".format(len(nearby_devices)))
 
 for addr, name in nearby_devices:
