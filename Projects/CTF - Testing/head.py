@@ -52,7 +52,7 @@ class Head:
     def turnLeftScan(self):
         currentEValue= BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue < self.leftLimitS):
-            BP.set_motor_power(BP.PORT_B, (speed*0.55))
+            BP.set_motor_power(BP.PORT_B, (speed*0.40))
             return 0
         else:
             BP.set_motor_power(BP.PORT_B, 0)
@@ -61,7 +61,7 @@ class Head:
     def turnRightScan(self):
         currentEValue= BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.rightLimitS):
-            BP.set_motor_power(BP.PORT_B, -(speed*0.55))
+            BP.set_motor_power(BP.PORT_B, -(speed*0.40))
             return 1
         else:
             BP.set_motor_power(BP.PORT_B, 0)
@@ -75,3 +75,6 @@ class Head:
     
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)
+    
+    def getEncoder(self):
+        return BP.get_motor_encoder(BP.PORT_B)

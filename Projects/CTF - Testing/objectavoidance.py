@@ -16,6 +16,10 @@ class avoidanceofObjects:
     BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
     switcher = 0
     direction = 0
+    leftScanValue = 0
+    rightScanValue = 0
+    centreScanValue = 0
+    closeToObject = False
     h = head.Head(120,107)
     def main(self):
         if(self.switcher == 0):
@@ -30,34 +34,42 @@ class avoidanceofObjects:
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
-            self.h.Scan()
-            print("uValue:" + str(uValue))
+            if(uValue <= 25):
+                self.closeToObject = True
             if(uValue == 0):
                 drive.stop()
             else:
-                if(uValue <= 3):
-                    # self.direction = random.randint(0, 1)
-                    if(self.direction == 0):
-                        # drive.revPivotTurn45(0,-30)
-                        # drive.pivotTurn45(30,0)
-                        self.h.stop()
-                        drive.pivotTurn90(40,-20,-1000)
-                        self.h.turnRight()
-                        uValue = self.getUltrasonic()
-                        if(uValue < 8 or uValue > 30):
-                            drive.moveBackward()
-                            time.sleep(0.7)
-                            drive.stop() 
+                if(self.closeToObject == True):
+                    if(self.centreScanValue == 0):
+                        self.centreScanValue = self.getUltrasonic()
+                        print("Centre:" + str(uValue))
+                    self.h.Scan()
+                    if(self.leftScanValue == 0 and self.rightScanValue == 0):
+                        if(self.h.getEncoder() > (self.h.leftLimitS-20)):
+                            self.leftScanValue = self.getUltrasonic()
+                            print("Left:" + str(uValue))
+                        if(self.h.getEncoder() < (self.h.rightLimitS+20)):
+                            self.rightScanValue = self.getUltrasonic()
+                            print("Right:" + str(uValue))
 
-                        time.sleep(1)
-                    else:
-                        self.h.stop()
-                        drive.turnRight45()
-                        drive.pivotTurn45(10,30)
-                        self.h.turnLeft()   
-                        time.sleep(1)
+
+                    # # self.direction = random.randint(0, 1)
+                    # if(self.direction == 0):
+                    #     # drive.revPivotTurn45(0,-30)
+                    #     # drive.pivotTurn45(30,0)
+                    #     self.h.stop()
+                    #     drive.pivotTurn90(40,-20,-1000)
+                    #     self.h.turnRight()
+                    #     uValue = self.getUltrasonic()
+                    #     time.sleep(1)
+                    # else:
+                    #     self.h.stop()
+                    #     drive.turnRight45()
+                    #     drive.pivotTurn45(10,30)
+                    #     self.h.turnLeft()   
+                    #     time.sleep(1)
                     
-                    self.switcher = 1
+                    # self.switcher = 1
                 else:
                     drive.moveForward()
 
