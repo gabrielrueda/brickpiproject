@@ -44,7 +44,7 @@ class avoidanceofObjects:
                         drive.pivotTurn90(40,-20,-1000)
                         self.h.turnRight()
                         uValue = self.getUltrasonic()
-                        if(uValue < 5 or uValue > 30):
+                        if(uValue < 8 or uValue > 30):
                             drive.moveBackward()
                             time.sleep(0.7)
                             drive.stop() 
