@@ -1,9 +1,10 @@
-# simple inquiry example
-import bluetooth
+# # simple inquiry example
+# import bluetooth
 
-nearby_devices = bluetooth.discover_devices(lookup_names=True)
-# nearby_devices = discover_devices(lookup_names=True)
-print("Found {} devices.".format(len(nearby_devices)))
+# nearby_devices = bluetooth.discover_devices(lookup_names=True)
+# # nearby_devices = discover_devices(lookup_names=True)
+# print("Found {} devices.".format(len(nearby_devices)))
 
-for addr, name in nearby_devices:
-    print("  {} - {}".format(addr, name))
+# for addr, name in nearby_devices:
+#     print("  {} - {}".format(addr, name))
+#!/bin/bash
