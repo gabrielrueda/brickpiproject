@@ -53,10 +53,12 @@ class avoidanceofObjects:
                             self.rightScanValue = self.getUltrasonic()
                             print("Right:" + str(uValue))
                     else:
-                        if(leftScanValue - rightScanValue > 5):
-                        
-                        elif(leftScanValue - rightScanValue < -5):
-                    
+                        if(self.leftScanValue - self.rightScanValue > 5):
+                            self.h.turnLeft()
+                        elif(self.leftScanValue - self.rightScanValue < -5):
+                            self.h.turnRight()
+                        else:
+                            self.h.returnCenter()
                     
                      
 
