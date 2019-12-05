@@ -43,15 +43,22 @@ class avoidanceofObjects:
                     if(self.centreScanValue == 0):
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre:" + str(uValue))
-                    self.h.Scan()
-                    if(self.leftScanValue == 0 and self.rightScanValue == 0):
-                        if(self.h.getEncoder() > (self.h.leftLimitS-20)):
+                    if(self.rightScanValue == 0):
+                        scanV = self.h.Scan()
+                        print("Scan Value:" + str(scanV))
+                        if(scanV == 2):
                             self.leftScanValue = self.getUltrasonic()
                             print("Left:" + str(uValue))
-                        if(self.h.getEncoder() < (self.h.rightLimitS+20)):
+                        elif(scanV == 3):
                             self.rightScanValue = self.getUltrasonic()
                             print("Right:" + str(uValue))
-
+                    else:
+                        if(leftScanValue - rightScanValue > 5):
+                        
+                        elif(leftScanValue - rightScanValue < -5):
+                    
+                    
+                     
 
                     # # self.direction = random.randint(0, 1)
                     # if(self.direction == 0):

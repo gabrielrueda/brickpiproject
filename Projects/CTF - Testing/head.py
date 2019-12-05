@@ -70,8 +70,15 @@ class Head:
     def Scan(self):
         if(self.direction == 0):
             self.direction = self.turnLeftScan()
+            return 1
         else:
             self.direction = self.turnRightScan()
+            if(self.direction == 1):
+                return 2
+            else:
+                return 3
+        BP.set_motor_power(BP.PORT_B, 0)
+
     
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)

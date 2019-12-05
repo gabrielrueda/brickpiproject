@@ -17,6 +17,5 @@ def run():
         s.sendline('sudo python main.py')
         s.prompt()
         print(s.before)
-    except pxssh.ExceptionPxssh, e:
+    except pxssh.ExceptionPxssh:
         print("pxssh failed on login.")
-        print(str(e))
