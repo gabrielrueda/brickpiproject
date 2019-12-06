@@ -49,8 +49,8 @@ def getReflected():
         print(error)
     
 try:
-    config.configAll()
     testSSH.run()
+    config.configAll()
     main()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.

@@ -14,7 +14,7 @@ def linefollowing():
     while(sensor < 90):
         try:
             sensor = BP.get_sensor(BP.PORT_3)
-            print(sensor)
+            # print(sensor)
         except brickpi3.SensorError as error:
             print(error)
     
