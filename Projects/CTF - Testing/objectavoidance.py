@@ -45,16 +45,16 @@ class avoidanceofObjects:
                         self.h.returnCenter()
                         time.sleep(0.5)
                         self.centreScanValue = self.getUltrasonic()
-                        print("Centre:" + str(uValue))
+                        print("Centre Scan Value:" + str(uValue))
                     if(self.rightScanValue == 0):
                         drive.stop()
                         scanV = self.h.Scan()
                         if(scanV == 2):
                             self.leftScanValue = self.getUltrasonic()
-                            print("Left:" + str(uValue))
+                            print("Left Scan Value:" + str(uValue))
                         elif(scanV == 3):
                             self.rightScanValue = self.getUltrasonic()
-                            print("Right:" + str(uValue))
+                            print("Right Scan Value:" + str(uValue))
                     elif(self.positionSet == False):
                         if(self.leftScanValue - self.rightScanValue > 10):
                             print("Head Turns Left")
