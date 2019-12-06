@@ -49,7 +49,7 @@ def getReflected():
         print(error)
     
 try:
-    testSSH.run()
+    # testSSH.run()
     config.configAll()
     main()
 
