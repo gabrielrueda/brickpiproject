@@ -27,10 +27,10 @@ import getpass
 def run():
     try:
         s = pxssh.pxssh()
-        hostname = "192.168.0.100"
+        hostname = "192.168.0.104"
         username = "pi"
         password = getpass.getpass('password: ')
-        s.login(hostname, username, password)
+        s.login(hostname, username, password, port=22)
         s.sendline('uptime')   # run a command
         s.prompt()             # match the prompt
         print(s.before)        # print everything before the prompt.
@@ -40,6 +40,7 @@ def run():
         s.sendline('sudo python main.py')
         s.prompt()
         print(s.before)
+        s.logout()
     except pxssh.ExceptionPxssh as error:
         print("pxssh failed on login.")
         print(error)
