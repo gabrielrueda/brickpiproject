@@ -23,13 +23,17 @@
 #         print(error)
 
 import paramiko
-ssh_client =paramiko.SSHClient()
-# ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-r_ip = "192.168.0.168"
-r_username = "pi"
-r_password = "robots1234"
-ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
-# stdin,stdout,stderr=ssh_client.exec_command("ls")
-# print(stdout)
-# ssh_client.close()
+
+def run():
+    ssh_client =paramiko.SSHClient()
+    # ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    r_ip = "192.168.0.100"
+    r_username = "pi"
+    r_password = "robots1234"
+    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    print("Connecting...")
+    ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
+    print("Connected")
+    stdin,stdout,stderr=ssh_client.exec_command("ls")
+    print(stdout)
+    ssh_client.close()
