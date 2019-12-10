@@ -11,12 +11,13 @@ def run():
     r_username = "pi"
     r_password = "robots1234"
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    print("Trying to Connect...")
     ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
-    # print("First Line")
+    print("First Line")
     stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF_Testing")
     for line in stdout:
         print('... ' + line.strip('\n'))
-    # print("Second Line")
+    print("Second Line")
     stdin,stdout,stderr=ssh_client.exec_command("sudo python main.py")
     for line in stderr:
         print('... ' + line.strip('\n'))
@@ -25,10 +26,10 @@ def run():
 def stop():
     ssh_client.close()
 
-# try:
-#     ssh_client =paramiko.SSHClient()
-#     run()
+try:
+    print("Starting Search....")
+    run()
 
-# except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-#     stop()
-#     BP.reset_all()
+except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
+    stop()
+    BP.reset_all()

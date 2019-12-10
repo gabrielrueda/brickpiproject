@@ -1,4 +1,5 @@
 import os
+import sys
 from multiprocessing import Process
 
 def Robot():
@@ -6,7 +7,6 @@ def Robot():
 def testSSH():
     os.system("./testSSH.py") 
 
-# os.chdir("/home/pi/Python_Scripts/CTF_Testing")
 if __name__ == '__main__':
     a = Process(target=Robot)
     b = Process(target=testSSH)
@@ -14,5 +14,3 @@ if __name__ == '__main__':
     b.start()
     a.join()
     b.join()
-
-#pushback
