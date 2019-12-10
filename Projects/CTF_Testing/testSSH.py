@@ -12,7 +12,7 @@ def run():
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
     # print("First Line")
-    stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF\ -\ Testing/")
+    stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF_Testing")
     for line in stdout:
         print('... ' + line.strip('\n'))
     # print("Second Line")
