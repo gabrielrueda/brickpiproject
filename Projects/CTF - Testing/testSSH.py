@@ -3,6 +3,7 @@ import brickpi3
 
 BP = brickpi3.BrickPi3()
 
+ssh_client =paramiko.SSHClient()
 def run():
     # ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     r_ip = "192.168.0.100"
