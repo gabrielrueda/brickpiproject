@@ -38,6 +38,6 @@ def run():
         print('... ' + line.strip('\n'))
     print("Second Line")
     stdin,stdout,stderr=ssh_client.exec_command("sudo python main.py")
-    for line in stdout:
+    for line in stderr:
         print('... ' + line.strip('\n'))
     # ssh_client.close()
