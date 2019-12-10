@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import drive
 import config
 import time     
