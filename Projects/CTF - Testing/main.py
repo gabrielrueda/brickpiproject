@@ -49,9 +49,11 @@ def getReflected():
         print(error)
     
 try:
-    testSSH.run()
+    # testSSH.run()
     config.configAll()
     main()
+    testSSH.run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
+    testSSH.stop()
     BP.reset_all()
