@@ -14,3 +14,17 @@ if __name__ == '__main__':
     b.start()
     a.join()
     b.join()
+    
+# import os                                                                       
+# from multiprocessing import Pool                                                
+                                                                                
+                                                                                
+# processes = ('testSSH.py', 'Robot.py')                                    
+                                                  
+                                                                                
+# def run_process(process):                                                             
+#     os.system('python {}'.format(process))                                       
+                                                                                
+                                                                                
+# pool = Pool(processes=2)                                                        
+# pool.map(run_process, processes)    

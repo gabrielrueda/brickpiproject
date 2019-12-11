@@ -7,7 +7,6 @@ import linefollowing_ctf
 import objectavoidance
 import head
 import clamp
-import testSSH
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -53,8 +52,6 @@ try:
     # testSSH.run()
     config.configAll()
     main()
-    testSSH.run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    testSSH.stop()
     BP.reset_all()
