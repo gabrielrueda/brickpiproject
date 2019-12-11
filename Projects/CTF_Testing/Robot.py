@@ -7,6 +7,7 @@ import linefollowing_ctf
 import objectavoidance
 import head
 import clamp
+import main
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -17,7 +18,7 @@ BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 
-def main():
+def mainFunction():
     o = objectavoidance.avoidanceofObjects()
     while(True):
         o.main()
@@ -49,9 +50,9 @@ def getReflected():
         print(error)
     
 try:
-    # testSSH.run()
     config.configAll()
-    main()
+    mainFunction()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
+    main.kill()
