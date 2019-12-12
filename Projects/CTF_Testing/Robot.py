@@ -55,4 +55,3 @@ try:
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
-    main.kill()
