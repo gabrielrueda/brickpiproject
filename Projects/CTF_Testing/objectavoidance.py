@@ -19,6 +19,8 @@ class avoidanceofObjects:
     leftScanValue = 0
     rightScanValue = 0
     centreScanValue = 0
+    scanArray = 0
+
     closeToObject = False
     positionSet = False
     h = head.Head(120,107)
@@ -50,7 +52,8 @@ class avoidanceofObjects:
                         drive.stop()
                         scanV = self.h.Scan()
                         if(scanV == 2):
-                            self.leftScanValue = self.getUltrasonic()
+                            # self.leftScanValue = self.getUltrasonic()
+                            scanArray.append(self.getUltrasonic())
                             print("Left Scan Value:" + str(uValue))
                         elif(scanV == 3):
                             self.rightScanValue = self.getUltrasonic()
