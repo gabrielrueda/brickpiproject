@@ -38,8 +38,8 @@ class avoidanceofObjects:
                     if(self.direction == 0):
                         drive.turnLeft45()
                         drive.pivotTurn45(30,10)
-                        #self.h.turnRight()
-                        #time.sleep(1)
+                        self.h.turnRight()
+                        time.sleep(1)
                     else:
                         drive.turnRight45()
                         drive.pivotTurn45(10,30)
