@@ -28,6 +28,7 @@ try:
     run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
+    print("reached")
     ssh_client.close()
     print("disconnected")
     reconnectSSH.powerOff()
