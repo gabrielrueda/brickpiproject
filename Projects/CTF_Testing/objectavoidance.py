@@ -4,6 +4,7 @@ import drive
 import config
 import head
 import random
+import statistics
 
 speed = 20
 uValue = 255
@@ -39,6 +40,9 @@ class avoidanceofObjects:
             if(x == 255.0):
                 someArray.remove(x)
         print("New Array:" + str(someArray))
+
+        print("Median Left Value:" + str(statistics.median(someArray)))
+
         return sum(someArray) / len(someArray)
 
     def avoidance(self):
@@ -52,16 +56,15 @@ class avoidanceofObjects:
                 if(self.closeToObject == True):
                     if(self.centreScanValue == 0):
                         self.h.returnCenter()
-                        time.sleep(0.5)
+                        drive.stop()
+                        time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
                     if(self.rightScanValue == 0):
-                        drive.stop()
-                        scanV = self.h.Scan()
+                        scanV = self.h.scanGetValues()
                         if(scanV == 2):
                             # self.leftScanValue = self.getUltrasonic()
                             self.leftScanArray.append(self.getUltrasonic())
-                            # self.leftScanArray.append(255.0)
                             # print("Left Scan Value:" + str(uValue))
                         elif(scanV == 3):
                             if(self.leftScanValue == 0):
