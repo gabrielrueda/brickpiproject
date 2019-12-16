@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import paramiko
 import brickpi3
+import reconnectSSH
 
 BP = brickpi3.BrickPi3()
 
@@ -14,22 +15,20 @@ def run():
     print("Trying to Connect...")
     ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
     print("First Line")
-    stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF_Testing")
-    for line in stdout:
-        print('... ' + line.strip('\n'))
-    print("Second Line")
+    # stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF_Testing")
+    # for line in stdout:
+    #     print('... ' + line.strip('\n'))
+    # print("Second Line")
     stdin,stdout,stderr=ssh_client.exec_command("sudo python main.py")
     for line in stderr:
         print('... ' + line.strip('\n'))
-    # ssh_client.close()
-
-def stop():
-    ssh_client.close()
 
 try:
     print("Starting Search....")
     run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    stop()
+    ssh_client.close()
+    print("disconnected")
+    reconnectSSH.powerOff()
     BP.reset_all()

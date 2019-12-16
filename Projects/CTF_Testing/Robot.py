@@ -1,4 +1,4 @@
-## !/usr/bin/env python
+#!/usr/bin/env python
 import drive
 import config
 import time     
@@ -17,6 +17,7 @@ BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
+uValue = 255
 
 def mainFunction():
     o = objectavoidance.avoidanceofObjects()
@@ -27,6 +28,11 @@ def mainFunction():
         if(getReflected() < 27):
             BP.set_motor_power(BP.PORT_B, 0)
             linefollowing_ctf.linefollowing()
+        if(colour[getColour()] == "Red"):
+            if(uValue < 70):
+                drive.turnLeft90()
+            else:
+                drive.turnRight90()
             
         time.sleep(0.02)
 

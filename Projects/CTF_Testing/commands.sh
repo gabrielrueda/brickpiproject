@@ -2,9 +2,13 @@
 
 echo Hello World!
 
-dos2unix testSSH.py
+dos2unix connectSSH.py
 
 dos2unix Robot.py
+
+dos2unix reconnectSSH.py
+
+chmod 755 connectSSH.py
 
 sudo python main.py
 
