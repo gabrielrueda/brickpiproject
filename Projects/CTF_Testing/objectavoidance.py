@@ -19,7 +19,7 @@ class avoidanceofObjects:
     leftScanValue = 0
     rightScanValue = 0
     centreScanValue = 0
-    scanArray = 0
+    leftScanArray = []
 
     closeToObject = False
     positionSet = False
@@ -33,6 +33,13 @@ class avoidanceofObjects:
             self.aroundObject()
         else:
             print("Error")
+    def getAverage(self, someArray):
+        print("Old Array:" + str(someArray))
+        for x in someArray:
+            if(x == 255.0):
+                someArray.remove(x)
+        print("New Array:" + str(someArray))
+        return sum(someArray) / len(someArray)
 
     def avoidance(self):
             uValue = 70
@@ -53,9 +60,15 @@ class avoidanceofObjects:
                         scanV = self.h.Scan()
                         if(scanV == 2):
                             # self.leftScanValue = self.getUltrasonic()
-                            scanArray.append(self.getUltrasonic())
-                            print("Left Scan Value:" + str(uValue))
+                            self.leftScanArray.append(self.getUltrasonic())
+                            # self.leftScanArray.append(255.0)
+                            # print("Left Scan Value:" + str(uValue))
                         elif(scanV == 3):
+                            if(self.leftScanValue == 0):
+                                self.leftScanValue = self.getAverage(self.leftScanArray)
+                                # print("Left Scan Possible Values:" + str(self.leftScanArray))
+                                print("Left Scan Value:" + str(self.leftScanValue))
+
                             self.rightScanValue = self.getUltrasonic()
                             print("Right Scan Value:" + str(uValue))
                     elif(self.positionSet == False):

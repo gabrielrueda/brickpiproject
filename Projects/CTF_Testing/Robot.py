@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+## !/usr/bin/env python
 import drive
 import config
 import time     
@@ -7,7 +7,7 @@ import linefollowing_ctf
 import objectavoidance
 import head
 import clamp
-import main
+# import main
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
