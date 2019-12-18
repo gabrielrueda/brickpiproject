@@ -15,6 +15,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
+BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 uValue = 255
@@ -33,7 +34,10 @@ def mainFunction():
                 drive.turnLeft90()
             else:
                 drive.turnRight90()
-            
+        # print(getTouch())
+        if(getTouch() == 1):
+            break
+
         time.sleep(0.02)
 
     BP.reset_all()
@@ -54,7 +58,17 @@ def getReflected():
         return BP.get_sensor(BP.PORT_3)
     except brickpi3.SensorError as error:
         print(error)
-    
+
+def getTouch():
+    while True:
+        try:
+            # touchValue = BP.get_sensor(BP.PORT_1)
+            # print(touchValue)
+            return BP.get_sensor(BP.PORT_1)
+        except brickpi3.SensorError as error:
+            return error
+        
+        time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 try:
     config.configAll()
     mainFunction()

@@ -34,17 +34,15 @@ class avoidanceofObjects:
             self.aroundObject()
         else:
             print("Error")
+
     def getAverage(self, someArray):
-        # print("Old Array:" + str(someArray))
-        # for x in someArray:
-        #     if(x == 255.0):
-        #         someArray.remove(x)
-        # print("New Array:" + str(someArray))
-
-        # print("Median Left Value:" + str(statistics.median(someArray)))
-
-        # return sum(someArray) / len(someArray)
-        return 6
+        print("Old Array:" + str(someArray))
+        for x in someArray:
+            if(x == 255.0):
+                someArray.remove(x)
+        print("New Array:" + str(someArray))
+        return statistics.median(someArray)
+        # return 6
 
     def avoidance(self):
             uValue = 70
@@ -76,14 +74,15 @@ class avoidanceofObjects:
                             self.rightScanValue = self.getUltrasonic()
                             print("Right Scan Value:" + str(uValue))
                     elif(self.positionSet == False):
-                        if(self.leftScanValue - self.rightScanValue > 10):
-                            print("Head Turns Left")
+                        if(self.rightScanValue > 50):
                             self.h.turnLeft()
-                        elif(self.leftScanValue - self.rightScanValue < -10):
-                            print("Head Turns Left")
+                            print("Choose Left")
+                        elif(self.leftScanValue > 50):
                             self.h.turnRight()
+                            print("Choose Right")
                         else:
                             self.h.returnCenter()
+                            print("Choose Centre")
                         self.positionSet = True
                     else:
                         if(uValue < 5):
