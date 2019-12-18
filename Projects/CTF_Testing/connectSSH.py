@@ -19,12 +19,16 @@ def run():
     # for line in stdout:
     #     print('... ' + line.strip('\n'))
     # print("Second Line")
-    stdin,stdout,stderr=ssh_client.exec_command("python main.py")
+    stdin,stdout,stderr=ssh_client.exec_command("python Robot.py")
     for line in stderr:
         print('... ' + line.strip('\n'))
 
 def close():
     print("reached")
+    print ("Terminating Process...")
+    stdin,stdout,stderr=ssh_client.exec_command("sudo python emergencyKill.py")
+    print("Powering Down...")
+    stdin,stdout,stderr=ssh_client.exec_command("sudo poweroff")
     ssh_client.close()
 
 try:
@@ -32,4 +36,4 @@ try:
     run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    pass
+    close()

@@ -13,5 +13,7 @@ def powerOff():
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     print("Reconnecting...")
     ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
-    print("Powering Down")
+    print ("Terminating Process...")
+    stdin,stdout,stderr=ssh_client.exec_command("sudo python emergencyKill.py")
+    print("Powering Down...")
     stdin,stdout,stderr=ssh_client.exec_command("sudo poweroff")
