@@ -19,17 +19,17 @@ def run():
     # for line in stdout:
     #     print('... ' + line.strip('\n'))
     # print("Second Line")
-    stdin,stdout,stderr=ssh_client.exec_command("sudo python main.py")
+    stdin,stdout,stderr=ssh_client.exec_command("python main.py")
     for line in stderr:
         print('... ' + line.strip('\n'))
+
+def close():
+    print("reached")
+    ssh_client.close()
 
 try:
     print("Starting Search....")
     run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    print("reached")
-    ssh_client.close()
-    print("disconnected")
-    reconnectSSH.powerOff()
-    BP.reset_all()
+    pass
