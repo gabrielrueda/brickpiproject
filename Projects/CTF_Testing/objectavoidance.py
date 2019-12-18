@@ -4,7 +4,7 @@ import drive
 import config
 import head
 import random
-import statistics
+# import statistics
 
 speed = 20
 uValue = 255
@@ -35,15 +35,16 @@ class avoidanceofObjects:
         else:
             print("Error")
     def getAverage(self, someArray):
-        print("Old Array:" + str(someArray))
-        for x in someArray:
-            if(x == 255.0):
-                someArray.remove(x)
-        print("New Array:" + str(someArray))
+        # print("Old Array:" + str(someArray))
+        # for x in someArray:
+        #     if(x == 255.0):
+        #         someArray.remove(x)
+        # print("New Array:" + str(someArray))
 
-        print("Median Left Value:" + str(statistics.median(someArray)))
+        # print("Median Left Value:" + str(statistics.median(someArray)))
 
-        return sum(someArray) / len(someArray)
+        # return sum(someArray) / len(someArray)
+        return 6
 
     def avoidance(self):
             uValue = 70
