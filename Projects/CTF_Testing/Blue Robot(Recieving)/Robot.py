@@ -17,7 +17,7 @@ BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 
-hostMACAddress = 'B8:27:EB:55:C0:33' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+hostMACAddress = 'B8:27:EB:9A:F6:F0' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
 port = 3
 backlog = 1
 size = 1024

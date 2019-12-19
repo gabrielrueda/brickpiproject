@@ -14,7 +14,7 @@ def run():
     print("Trying to Connect...")
     ssh_client.connect(hostname=r_ip, username=r_username,password=r_password)
     print("First Line")
-    ssh_client.SFTPClient.chdir(path="cd Python_Scripts")
+    # ssh_client.SFTPClient.chdir(path="cd Python_Scripts")
     # stdin,stdout,stderr=ssh_client.exec_command("cd Python_Scripts/CTF_Testing")
     # for line in stdout:
     #     print('... ' + line.strip('\n'))
