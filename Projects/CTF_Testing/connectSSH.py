@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import paramiko
 import brickpi3
-import reconnectSSH
 
 BP = brickpi3.BrickPi3()
 

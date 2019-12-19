@@ -1,8 +1,6 @@
 import os
 import sys
 from multiprocessing import Process
-# import connectSSH
-import reconnectSSH
 import brickpi3
 
 BP = brickpi3.BrickPi3()
@@ -28,8 +26,4 @@ try:
     a.join()
     b.join()
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    # #SSHScript().close()
-    # b.terminate()
-    # print("disconnected")
-    # reconnectSSH.powerOff()
     BP.reset_all()
