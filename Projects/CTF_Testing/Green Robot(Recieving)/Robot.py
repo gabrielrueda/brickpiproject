@@ -15,12 +15,21 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
-BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
+# BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
+
+hostMACAddress = 'B8:27:EB:55:C0:33' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+port = 3
+backlog = 1
+size = 1024
+s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+s.bind((hostMACAddress, port))
+s.listen(backlog)
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 uValue = 255
 
 def mainFunction():
+    client, clientInfo = s.accept()
     o = objectavoidance.avoidanceofObjects()
     while(True):
         o.main()
@@ -34,8 +43,9 @@ def mainFunction():
                 drive.turnLeft90()
             else:
                 drive.turnRight90()
-        # print(getTouch())
-        if(getTouch() == 1):
+        
+        data = client.recv(size)
+        if(data == "end"):
             break
 
         time.sleep(0.02)
@@ -59,16 +69,15 @@ def getReflected():
     except brickpi3.SensorError as error:
         print(error)
 
-def getTouch():
-    while True:
-        try:
-            # touchValue = BP.get_sensor(BP.PORT_1)
-            # print(touchValue)
-            return BP.get_sensor(BP.PORT_1)
-        except brickpi3.SensorError as error:
-            return error
+# def getTouch():
+#     while True:
+#         try:
+#             # touchValue = BP.get_sensor(BP.PORT_1)
+#             # print(touchValue)
+#             return BP.get_sensor(BP.PORT_1)
+#         except brickpi3.SensorError as error:
+#             return error
         
-        time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 try:
     config.configAll()
     mainFunction()

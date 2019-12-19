@@ -12,7 +12,7 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 def configAll():
    configLight()
    configUltrasonic()
-   configTouch()
+#    configTouch()
 
 def configLight():
     try:
@@ -44,17 +44,17 @@ def configUltrasonic():
                 error = True
     print("Configured Utrasonic Sensor")
 
-def configTouch():
-    try:
-        BP.get_sensor(BP.PORT_1)
-    except brickpi3.SensorError:
-        print("Configuring...")
-        error = True
-        while error:
-            time.sleep(0.1)
-            try:
-                BP.get_sensor(BP.PORT_1)
-                error = False
-            except brickpi3.SensorError:
-                error = True
-    print("Configured Touch Sensor")
+# def configTouch():
+#     try:
+#         BP.get_sensor(BP.PORT_1)
+#     except brickpi3.SensorError:
+#         print("Configuring...")
+#         error = True
+#         while error:
+#             time.sleep(0.1)
+#             try:
+#                 BP.get_sensor(BP.PORT_1)
+#                 error = False
+#             except brickpi3.SensorError:
+#                 error = True
+#     print("Configured Touch Sensor")
