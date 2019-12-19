@@ -16,7 +16,6 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
-# BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 
 # Blue Robot Mac Address Bluetooth: B8:27:EB:9A:F6:F0
 # Green Robot Mac Address Bluetooth: B8:27:EB:55:C0:33
@@ -44,8 +43,6 @@ def mainFunction():
                 drive.turnLeft90()
             else:
                 drive.turnRight90()
-        # print(getTouch())
-        # if(getTouch() == 1):
 
         time.sleep(0.02)
 
@@ -67,16 +64,7 @@ def getReflected():
         return BP.get_sensor(BP.PORT_3)
     except brickpi3.SensorError as error:
         print(error)
-
-# def getTouch():
-#     while True:
-#         try:
-#             # touchValue = BP.get_sensor(BP.PORT_1)
-#             # print(touchValue)
-#             return BP.get_sensor(BP.PORT_1)
-#         except brickpi3.SensorError as error:
-#             return error
-      
+   
 try:
     config.configAll()
     mainFunction()
