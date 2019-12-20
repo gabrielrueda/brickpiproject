@@ -20,7 +20,7 @@ BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 # Blue Robot Mac Address Bluetooth: B8:27:EB:9A:F6:F0
 # Green Robot Mac Address Bluetooth: B8:27:EB:55:C0:33
 
-serverMACAddress = 'B8:27:EB:55:C0:33'
+serverMACAddress = 'B8:27:EB:9A:F6:F0'
 port = 3
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((serverMACAddress, port))
