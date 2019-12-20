@@ -7,6 +7,7 @@ import linefollowing_ctf
 import objectavoidance
 import head
 import clamp
+import bluetooth
 # import main
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
