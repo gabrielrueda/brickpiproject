@@ -26,4 +26,5 @@ try:
     a.join()
     b.join()
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    BP.reset_all()
+    pass
+    # BP.reset_all()

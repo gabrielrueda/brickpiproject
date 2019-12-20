@@ -36,4 +36,5 @@ try:
     run()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    close()
+    pass
+    # close()
