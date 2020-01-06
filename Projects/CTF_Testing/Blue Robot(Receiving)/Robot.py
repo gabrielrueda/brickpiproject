@@ -28,7 +28,7 @@ colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 uValue = 255
 
 def mainFunction():
-    client, clientInfo = s.accept()
+    # client, clientInfo = s.accept()
     o = objectavoidance.avoidanceofObjects()
     while(True):
         o.main()
