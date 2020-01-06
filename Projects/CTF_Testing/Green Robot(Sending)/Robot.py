@@ -24,14 +24,14 @@ BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 # port = 3
 # s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 # s.connect((serverMACAddress, port))
-devices = bluetooth.discover_devices(lookup_names=True)
-for device in devices:
-    print([_ for _ in find_service(address=device) if 'RFCOMM' in _['protocol'] ])
-# now manually select the desired device or hardcode its name/mac whatever in the script
-bt_addr = input()
-port = [_ for _ in find_service(address=bt_addr) if 'RFCOMM' in _['protocol']][0]['port']
-s = BluetoothSocket(RFCOMM)
-s.connect((bt_addr, port))
+# devices = bluetooth.discover_devices(lookup_names=True)
+# for device in devices:
+#     print([_ for _ in find_service(address=device) if 'RFCOMM' in _['protocol'] ])
+# # now manually select the desired device or hardcode its name/mac whatever in the script
+# bt_addr = input()
+# port = [_ for _ in find_service(address=bt_addr) if 'RFCOMM' in _['protocol']][0]['port']
+# s = BluetoothSocket(RFCOMM)
+# s.connect((bt_addr, port))
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 uValue = 255
@@ -77,9 +77,9 @@ try:
     mainFunction()
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    s.send("end")
-    print("Finishing Program....")
-    time.sleep(3)
-    print("Finished Program")
-    s.close()
+    # s.send("end")
+    # print("Finishing Program....")
+    # time.sleep(3)
+    # print("Finished Program")
+    # s.close()
     BP.reset_all()

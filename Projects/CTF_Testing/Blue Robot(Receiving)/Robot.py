@@ -16,13 +16,13 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
 
-hostMACAddress = '' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
-port = 3
-backlog = 1
-size = 1024
-s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-s.bind((hostMACAddress, port))
-s.listen(backlog)
+# hostMACAddress = '' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
+# port = 3
+# backlog = 1
+# size = 1024
+# s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+# s.bind((hostMACAddress, port))
+# s.listen(backlog)
 
 colour = ["none", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 uValue = 255
@@ -43,10 +43,10 @@ def mainFunction():
             else:
                 drive.turnRight90()
         
-        data = client.recv(size)
-        if(data == "end"):
-            print("Ending...")
-            break
+        # data = client.recv(size)
+        # if(data == "end"):
+        #     print("Ending...")
+        #     break
 
         time.sleep(0.02)
 
