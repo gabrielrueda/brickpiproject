@@ -21,7 +21,7 @@ class avoidanceofObjects:
     rightScanValue = 0
     centreScanValue = 0
     leftScanArray = []
-    headAngle = 0 #0 is for centre, 1 is for left, and 2 is for right
+    headAngle = 0 # 0 is for centre, 1 is for left, and 2 is for right
 
     closeToObject = False
     positionSet = False
@@ -43,7 +43,6 @@ class avoidanceofObjects:
                 someArray.remove(x)
         print("New Array:" + str(someArray))
         return statistics.median(someArray)
-        # return 6
 
     def avoidance(self):
             uValue = 70
@@ -63,13 +62,10 @@ class avoidanceofObjects:
                     if(self.rightScanValue == 0):
                         scanV = self.h.scanGetValues()
                         if(scanV == 2):
-                            # self.leftScanValue = self.getUltrasonic()
                             self.leftScanArray.append(self.getUltrasonic())
-                            # print("Left Scan Value:" + str(uValue))
                         elif(scanV == 3):
                             if(self.leftScanValue == 0):
                                 self.leftScanValue = self.getAverage(self.leftScanArray)
-                                # print("Left Scan Possible Values:" + str(self.leftScanArray))
                                 print("Left Scan Value:" + str(self.leftScanValue))
 
                             self.rightScanValue = self.getUltrasonic()
@@ -106,24 +102,6 @@ class avoidanceofObjects:
                             self.switcher = 1
                         else:
                             drive.moveForward()
-                    
-                    # # self.direction = random.randint(0, 1)
-                    # if(self.direction == 0):
-                    #     # drive.revPivotTurn45(0,-30)
-                    #     # drive.pivotTurn45(30,0)
-                    #     self.h.stop()
-                    #     drive.pivotTurn90(40,-20,-1000)
-                    #     self.h.turnRight()
-                    #     uValue = self.getUltrasonic()
-                    #     time.sleep(1)
-                    # else:
-                    #     self.h.stop()
-                    #     drive.turnRight45()
-                    #     drive.pivotTurn45(10,30)
-                    #     self.h.turnLeft()   
-                    #     time.sleep(1)
-                    
-                    # self.switcher = 1
                 else:
                     drive.moveForward()
                     self.h.Scan()
@@ -150,7 +128,6 @@ class avoidanceofObjects:
     def aroundObject(self):
         if(self.direction == 0):
             time.sleep(0.5)
-            # drive.pivotTurn90(20,40)
             drive.pivotTurn90(20,40,-2400)
         else:
             time.sleep(0.5)
