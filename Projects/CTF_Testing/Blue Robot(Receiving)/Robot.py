@@ -7,7 +7,7 @@ import linefollowing_ctf
 import objectavoidance
 import head
 import clamp
-import bluetooth
+# import bluetooth
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
 
@@ -68,7 +68,7 @@ def getReflected():
         return BP.get_sensor(BP.PORT_3)
     except brickpi3.SensorError as error:
         print(error)
-      
+
 try:
     config.configAll()
     mainFunction()
