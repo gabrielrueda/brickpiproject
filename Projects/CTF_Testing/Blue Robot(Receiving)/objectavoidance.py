@@ -92,9 +92,9 @@ class avoidanceofObjects:
                         if(uValue < 5):
                             if(self.headAngle == 0):
                                 if(self.direction == 0):
-                                    drive.turnLeft()
+                                    drive.turnLeft90()
                                 else:
-                                    drive.turnRight()
+                                    drive.turnRight90()
                             elif(self.headAngle == 1):
                                 drive.turnRight45()
                             else:
