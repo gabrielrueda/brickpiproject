@@ -107,7 +107,7 @@ class avoidanceofObjects:
                     self.h.Scan()
 
     def checkObject(self):
-
+        closeToObject = False
         uValue = self.getUltrasonic()
 
         p = -1
