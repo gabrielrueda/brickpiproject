@@ -21,7 +21,7 @@ class Head:
         self.leftLimitS = BP.get_motor_encoder(BP.PORT_B) + (rightLimit*0.5)
         self.rightLimitS = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.5)
 
-    def returnCenter(self):
+    def returnCentre(self):
         print("Centre")
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.centreEncoder):

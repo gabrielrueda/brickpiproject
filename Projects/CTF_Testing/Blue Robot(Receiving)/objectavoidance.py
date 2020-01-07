@@ -55,7 +55,7 @@ class avoidanceofObjects:
             else:
                 if(self.closeToObject == True):
                     if(self.centreScanValue == 0):
-                        self.h.returnCenter()
+                        self.h.returnCentre()
                         drive.stop()
                         time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
@@ -84,7 +84,7 @@ class avoidanceofObjects:
                             self.direction = 0
                             self.headAngle = 2
                         else:
-                            self.h.returnCenter()
+                            self.h.returnCentre()
                             self.direction = random.randint(0, 1)
                             self.headAngle = 0
                         self.positionSet = True
@@ -144,7 +144,7 @@ class avoidanceofObjects:
 
         if(uValue > 40):
             self.switcher = 2
-            self.h.returnCenter()
+            self.h.returnCentre()
             drive.moveForward()
 
     def aroundObject(self):
