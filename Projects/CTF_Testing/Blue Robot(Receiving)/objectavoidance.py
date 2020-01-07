@@ -4,7 +4,7 @@ import drive
 import config
 import head
 import random
-# import statistics
+import statistics
 
 speed = 20
 uValue = 255
@@ -21,6 +21,7 @@ class avoidanceofObjects:
     rightScanValue = 0
     centreScanValue = 0
     leftScanArray = []
+    headAngle = 0 #0 is for centre, 1 is for left, and 2 is for right
 
     closeToObject = False
     positionSet = False
@@ -76,22 +77,32 @@ class avoidanceofObjects:
                     elif(self.positionSet == False):
                         if(self.rightScanValue > 50):
                             self.h.turnLeft()
-                            print("Choose Left")
+                            self.direction = 1
+                            self.headAngle = 1
                         elif(self.leftScanValue > 50):
                             self.h.turnRight()
-                            print("Choose Right")
+                            self.direction = 0
+                            self.headAngle = 2
                         else:
                             self.h.returnCenter()
-                            print("Choose Centre")
+                            self.direction = random.randint(0, 1)
+                            self.headAngle = 0
                         self.positionSet = True
                     else:
                         if(uValue < 5):
-                            drive.stop()
+                            if(self.headAngle == 0):
+                                if(direction == 0):
+                                    drive.turnLeft()
+                                else:
+                                    drive.turnRight()
+                            elif(self.headAngle == 1):
+                                drive.turnRight45()
+                            else:
+                                drive.turnLeft45()
+                            self.switcher = 1
                         else:
                             drive.moveForward()
                     
-                     
-
                     # # self.direction = random.randint(0, 1)
                     # if(self.direction == 0):
                     #     # drive.revPivotTurn45(0,-30)
