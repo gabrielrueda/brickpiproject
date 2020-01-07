@@ -47,7 +47,7 @@ class avoidanceofObjects:
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
-            if(uValue <= 15):
+            if(uValue <= 10):
                 self.closeToObject = True
             if(uValue == 0):
                 drive.stop()
@@ -111,7 +111,7 @@ class avoidanceofObjects:
         uValue = self.getUltrasonic()
 
         p = -1
-        error = (uValue - 10) * p
+        error = (uValue - 15) * p
         if(self.direction == 0):
             BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
             BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
@@ -120,7 +120,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
-        if(uValue > 40):
+        if(uValue > 50):
             self.switcher = 2
             self.h.returnCentre()
             drive.moveForward()

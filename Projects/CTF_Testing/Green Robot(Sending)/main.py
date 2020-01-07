@@ -9,15 +9,7 @@ def RobotScript():
     os.system("./Robot.py")     
 def SSHScript():
     os.system("./connectSSH.py") 
-
-# if __name__ == '__main__':
-#     a = Process(target=Robot)
-#     b = Process(target=connectSSH)
-#     a.start()
-#     b.start()
-#     a.join()
-#     b.join()
-
+    
 try:
     a = Process(target=RobotScript)
     b = Process(target=SSHScript)

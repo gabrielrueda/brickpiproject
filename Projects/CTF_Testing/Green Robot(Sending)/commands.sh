@@ -11,3 +11,5 @@ chmod 755 connectSSH.py
 chmod 755 Robot.py
 
 sudo python main.py
+
+echo Match Start!
