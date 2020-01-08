@@ -85,7 +85,7 @@ class avoidanceofObjects:
                             self.headAngle = 0
                         self.positionSet = True
                     else:
-                        if(uValue < 5):
+                        if(uValue < 3):
                             if(self.headAngle == 0):
                                 if(self.direction == 0):
                                     drive.turnLeft90()
@@ -107,7 +107,7 @@ class avoidanceofObjects:
                     self.h.Scan()
 
     def checkObject(self):
-        closeToObject = False
+        self.closeToObject = False
         uValue = self.getUltrasonic()
 
         p = -1
@@ -120,7 +120,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
-        if(uValue > 50):
+        if(uValue > 60):
             self.switcher = 2
             self.h.returnCentre()
             drive.moveForward()
