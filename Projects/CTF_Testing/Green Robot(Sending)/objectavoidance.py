@@ -122,6 +122,13 @@ class avoidanceofObjects:
 
     def checkObject(self):
         self.closeToObject = False
+        self.positionSet = False
+        self.rightScanValue = 0
+        self.leftScanValue = 0
+        self.centreScanValue = 0
+        self.rightScanArray = []
+        self.leftScanArray = []
+
         uValue = self.getUltrasonic()
 
         p = -1
