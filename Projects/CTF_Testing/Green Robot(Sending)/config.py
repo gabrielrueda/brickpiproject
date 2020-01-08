@@ -7,7 +7,7 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 # pylint: disable=no-member
 BP.set_sensor_type(BP.PORT_3, BP.SENSOR_TYPE.EV3_COLOR_REFLECTED)
 BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
-BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
+# BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.TOUCH)
 
 def configAll():
    configLight()
