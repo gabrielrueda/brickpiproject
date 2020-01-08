@@ -21,7 +21,9 @@ class avoidanceofObjects:
     rightScanValue = 0
     centreScanValue = 0
     leftScanArray = []
+    rightScanArray = []
     headAngle = 0 # 0 is for centre, 1 is for left, and 2 is for right
+    i = 0
 
     closeToObject = False
     positionSet = False
@@ -59,8 +61,11 @@ class avoidanceofObjects:
                         time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
-                    if(self.rightScanValue == 0):
-                        scanV = self.h.scanGetValues()
+                    if(self.i <= 4 and self.rightScanValue == 0):
+                        if(self.i == 0):
+                            scanV = self.h.scanGetValues()
+                        else:
+                            scanV = 3
                         if(scanV == 2):
                             self.leftScanArray.append(self.getUltrasonic())
                         elif(scanV == 3):
@@ -68,14 +73,21 @@ class avoidanceofObjects:
                                 self.leftScanValue = self.getAverage(self.leftScanArray)
                                 print("Left Scan Value:" + str(self.leftScanValue))
 
-                            self.rightScanValue = self.getUltrasonic()
-                            print("Right Scan Value:" + str(uValue))
+                            self.rightScanArray.insert(self.i,self.getUltrasonic())
+                            self.i += 1
+                            print("i = " + str(self.i))
+                            # print("Right Scan Value:" + str(self.getUltrasonic()))
+                    elif(self.rightScanValue == 0):
+                        self.rightScanValue = self.getAverage(self.rightScanArray)
+                        print("Right Scan Value:" + str(self.rightScanValue))
+                        self.i=0
+
                     elif(self.positionSet == False):
-                        if(self.rightScanValue > 50):
+                        if(self.rightScanValue > 40):
                             self.h.turnLeft()
                             self.direction = 1
                             self.headAngle = 1
-                        elif(self.leftScanValue > 50):
+                        elif(self.leftScanValue > 40):
                             self.h.turnRight()
                             self.direction = 0
                             self.headAngle = 2
@@ -85,7 +97,7 @@ class avoidanceofObjects:
                             self.headAngle = 0
                         self.positionSet = True
                     else:
-                        if(uValue < 3):
+                        if(uValue < 5):
                             if(self.headAngle == 0):
                                 if(self.direction == 0):
                                     drive.turnLeft90()
@@ -95,9 +107,11 @@ class avoidanceofObjects:
                                     self.h.turnLeft()
                             elif(self.headAngle == 1):
                                 drive.turnRight45()
+                                self.h.returnCentre()
                                 self.h.turnLeft()
                             else:
                                 drive.turnLeft45()
+                                self.h.returnCentre()
                                 self.h.turnRight()
                             self.switcher = 1
                         else:
@@ -108,6 +122,13 @@ class avoidanceofObjects:
 
     def checkObject(self):
         self.closeToObject = False
+        self.positionSet = False
+        self.rightScanValue = 0
+        self.leftScanValue = 0
+        self.centreScanValue = 0
+        self.rightScanArray = []
+        self.leftScanArray = []
+
         uValue = self.getUltrasonic()
 
         p = -1
@@ -120,7 +141,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
-        if(uValue > 60):
+        if(uValue > 60 and uValue != 255.0):
             self.switcher = 2
             self.h.returnCentre()
             drive.moveForward()
@@ -132,6 +153,7 @@ class avoidanceofObjects:
         else:
             time.sleep(0.5)
             drive.pivotTurn90(40,20,-2400)
+        
         self.switcher = 0
 
     def getUltrasonic(self):
