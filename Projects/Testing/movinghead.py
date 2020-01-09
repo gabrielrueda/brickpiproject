@@ -32,26 +32,44 @@ def getUltrasonic():
     except brickpi3.SensorError as error:
         print(error)
         return 0
+
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-    rightLimit = centreEncoder - 107
-    leftLimit = centreEncoder + 107
-    configUltra()
-    while(currentEValue > rightLimit):
-        BP.set_motor_power(BP.PORT_B, -speed)
-        currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        print(getUltrasonic())
-        time.sleep(0.02)
+    BP.set_motor_power(BP.PORT_B, 3)
+    time.sleep(2)
+    BP.set_motor_power(BP.PORT_B, 0)
+    currentEValue = BP.get_motor_encoder(BP.PORT_B)
+    if(currentEValue > centreEncoder):
+        while(currentEValue > centreEncoder):
+            BP.set_motor_power(BP.PORT_B, -speed)
+            currentEValue = BP.get_motor_encoder(BP.PORT_B)
+            time.sleep(0.02)
+    else:
+        while(currentEValue < centreEncoder):
+            BP.set_motor_power(BP.PORT_B, speed)
+            currentEValue = BP.get_motor_encoder(BP.PORT_B)
+            time.sleep(0.02)
+    BP.set_motor_power(BP.PORT_B, 0)
 
-    while(currentEValue < leftLimit):
-        BP.set_motor_power(BP.PORT_B, speed)
-        currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        print(getUltrasonic())
-        time.sleep(0.02)
+# try:
+#     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
+#     rightLimit = centreEncoder - 107
+#     leftLimit = centreEncoder + 107
+#     configUltra()
+#     while(currentEValue > rightLimit):
+#         BP.set_motor_power(BP.PORT_B, -speed)
+#         currentEValue = BP.get_motor_encoder(BP.PORT_B)
+#         print(getUltrasonic())
+#         time.sleep(0.02)
 
-    while(True):
-        BP.set_motor_power(BP.PORT_B,7)
-        print("Press CTRL+C")
+#     while(currentEValue < leftLimit):
+#         BP.set_motor_power(BP.PORT_B, speed)
+#         currentEValue = BP.get_motor_encoder(BP.PORT_B)
+#         print(getUltrasonic())
+#         time.sleep(0.02)
+
+#     while(True):
+#         BP.set_motor_power(BP.PORT_B,7)
 
 except KeyboardInterrupt: # the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all() 
