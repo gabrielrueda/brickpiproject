@@ -48,7 +48,7 @@ class avoidanceofObjects:
 
     def getLowest(self, someArray):
         print("Old Array:" + str(someArray))
-        return someArray.min()
+        return min(someArray)
 
     def avoidance(self):
             uValue = 70
