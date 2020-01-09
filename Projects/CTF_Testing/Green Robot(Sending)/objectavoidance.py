@@ -65,7 +65,7 @@ class avoidanceofObjects:
                         time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
-                    if(self.i <= 9 and self.rightScanValue == 0):
+                    if(self.i <= 19 and self.rightScanValue == 0):
                         if(self.i == 0):
                             scanV = self.h.scanGetValues()
                         else:
@@ -74,7 +74,7 @@ class avoidanceofObjects:
                             self.leftScanArray.append(self.getUltrasonic())
                         elif(scanV == 3):
                             if(self.leftScanValue == 0):
-                                self.leftScanValue = self.getAverage(self.leftScanArray)
+                                self.leftScanValue = self.getLowest(self.leftScanArray)
                                 print("Left Scan Value:" + str(self.leftScanValue))
 
                             self.rightScanArray.insert(self.i,self.getUltrasonic())
@@ -137,7 +137,9 @@ class avoidanceofObjects:
 
         p = -1
         error = (uValue - 25) * p
-        if(self.direction == 0):
+        if(uValue == 255):
+            pass
+        elif(self.direction == 0):
             BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
             BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
         else:

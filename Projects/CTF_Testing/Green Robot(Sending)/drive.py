@@ -5,7 +5,7 @@ BP = brickpi3.BrickPi3()
 
 speed = 30
 turnSpeed = 50
-encoders = [-750,750,-2400,-2400,-375,375,-900,-900]
+encoders = [-705,705,-2400,-2400,-375,375,-900,-900]
 
 
 def moveForward():

@@ -17,7 +17,7 @@ class Head:
         self.direction = 0
         self.directionOther = 0
         self.leftLimit = BP.get_motor_encoder(BP.PORT_B) + (leftLimit*0.7)
-        self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.7)
+        self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.65)
         self.leftLimitS = BP.get_motor_encoder(BP.PORT_B) + (rightLimit*0.5)
         self.rightLimitS = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.5)
 

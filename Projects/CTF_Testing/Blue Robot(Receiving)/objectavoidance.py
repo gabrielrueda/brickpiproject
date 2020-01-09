@@ -70,7 +70,7 @@ class avoidanceofObjects:
                             self.leftScanArray.append(self.getUltrasonic())
                         elif(scanV == 3):
                             if(self.leftScanValue == 0):
-                                self.leftScanValue = self.getAverage(self.leftScanArray)
+                                self.leftScanValue = self.getLowest(self.leftScanArray)
                                 print("Left Scan Value:" + str(self.leftScanValue))
 
                             self.rightScanArray.insert(self.i,self.getUltrasonic())
