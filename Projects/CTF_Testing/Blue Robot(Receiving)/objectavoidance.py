@@ -137,8 +137,9 @@ class avoidanceofObjects:
 
         p = -1
         error = (uValue - 25) * p
-        if(uValue == 255):
-            pass
+        if(uValue > 200):
+            BP.set_motor_power(BP.PORT_A, -20)
+            BP.set_motor_power(BP.PORT_D, -20)
         elif(self.direction == 0):
             BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
             BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
@@ -147,7 +148,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
-        if(uValue > 70 and uValue != 255.0):
+        if(uValue > 70 and uValue < 200):
             self.switcher = 2
             self.h.returnCentre()
             drive.moveForward()
