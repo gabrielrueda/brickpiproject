@@ -65,7 +65,7 @@ class avoidanceofObjects:
                         time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
-                    if(self.i <= 4 and self.rightScanValue == 0):
+                    if(self.i <= 9 and self.rightScanValue == 0):
                         if(self.i == 0):
                             scanV = self.h.scanGetValues()
                         else:
