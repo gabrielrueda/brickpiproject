@@ -25,15 +25,15 @@ class Head:
         print("Centre")
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.centreEncoder):
-            while(currentEValue > self.centreEncoder):
+            while(currentEValue > self.centreEncoder + 19):
                 BP.set_motor_power(BP.PORT_B, -speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                time.sleep(0.02)
+                # time.sleep(0.02)
         else:
-            while(currentEValue < self.centreEncoder):
+            while(currentEValue < self.centreEncoder - 19):
                 BP.set_motor_power(BP.PORT_B, speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                time.sleep(0.02)
+                # time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
 
     def turnLeft(self):

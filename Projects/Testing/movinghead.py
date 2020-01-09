@@ -10,15 +10,13 @@ def returnCentre():
     print("Centre")
     currentEValue = BP.get_motor_encoder(BP.PORT_B)
     if(currentEValue > centreEncoder):
-        while(currentEValue > centreEncoder):
+        while(currentEValue > centreEncoder + 19):
             BP.set_motor_power(BP.PORT_B, -speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
-            time.sleep(0.02)
     else:
-        while(currentEValue < centreEncoder):
+        while(currentEValue < centreEncoder - 19):
             BP.set_motor_power(BP.PORT_B, speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
-            time.sleep(0.02)
     BP.set_motor_power(BP.PORT_B, 0)
 
 try:
@@ -30,3 +28,5 @@ try:
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
+
+    #37
