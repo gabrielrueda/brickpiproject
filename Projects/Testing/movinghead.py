@@ -21,10 +21,12 @@ def returnCentre():
 
 try:
     centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-    BP.set_motor_power(BP.PORT_B, -30)
-    time.sleep(0.4)
-    BP.set_motor_power(BP.PORT_B, 0)
-    returnCentre()
+    while(True):
+        BP.set_motor_power(BP.PORT_B, 30)
+        time.sleep(0.4)
+        BP.set_motor_power(BP.PORT_B, 0)
+        returnCentre()
+        time.sleep(2.5)
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
