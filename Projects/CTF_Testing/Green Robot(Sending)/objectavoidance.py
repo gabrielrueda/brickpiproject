@@ -46,6 +46,10 @@ class avoidanceofObjects:
         print("New Array:" + str(someArray))
         return statistics.median(someArray)
 
+    def getLowest(self, someArray):
+        print("Old Array:" + str(someArray))
+        return someArray.min()
+
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
@@ -78,7 +82,7 @@ class avoidanceofObjects:
                             print("i = " + str(self.i))
                             # print("Right Scan Value:" + str(self.getUltrasonic()))
                     elif(self.rightScanValue == 0):
-                        self.rightScanValue = self.getAverage(self.rightScanArray)
+                        self.rightScanValue = self.getLowest(self.rightScanArray)
                         print("Right Scan Value:" + str(self.rightScanValue))
                         self.i=0
 
