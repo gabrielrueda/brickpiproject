@@ -46,6 +46,10 @@ class avoidanceofObjects:
         print("New Array:" + str(someArray))
         return statistics.median(someArray)
 
+    def getLowest(self, someArray):
+        print("Old Array:" + str(someArray))
+        return min(someArray)
+
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
@@ -61,7 +65,7 @@ class avoidanceofObjects:
                         time.sleep(1)
                         self.centreScanValue = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
-                    if(self.i <= 4 and self.rightScanValue == 0):
+                    if(self.i <= 19 and self.rightScanValue == 0):
                         if(self.i == 0):
                             scanV = self.h.scanGetValues()
                         else:
@@ -78,7 +82,7 @@ class avoidanceofObjects:
                             print("i = " + str(self.i))
                             # print("Right Scan Value:" + str(self.getUltrasonic()))
                     elif(self.rightScanValue == 0):
-                        self.rightScanValue = self.getAverage(self.rightScanArray)
+                        self.rightScanValue = self.getLowest(self.rightScanArray)
                         print("Right Scan Value:" + str(self.rightScanValue))
                         self.i=0
 
@@ -132,8 +136,10 @@ class avoidanceofObjects:
         uValue = self.getUltrasonic()
 
         p = -1
-        error = (uValue - 15) * p
-        if(self.direction == 0):
+        error = (uValue - 25) * p
+        if(uValue == 255):
+            pass
+        elif(self.direction == 0):
             BP.set_motor_power(BP.PORT_A, -speed - (error * 0.8))
             BP.set_motor_power(BP.PORT_D, -speed + (error * 0.8))
         else:
@@ -141,7 +147,7 @@ class avoidanceofObjects:
             BP.set_motor_power(BP.PORT_D, -speed - (error * 0.8))
         print(uValue)
 
-        if(uValue > 60 and uValue != 255.0):
+        if(uValue > 70 and uValue != 255.0):
             self.switcher = 2
             self.h.returnCentre()
             drive.moveForward()

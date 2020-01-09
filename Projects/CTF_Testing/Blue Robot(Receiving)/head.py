@@ -17,7 +17,7 @@ class Head:
         self.direction = 0
         self.directionOther = 0
         self.leftLimit = BP.get_motor_encoder(BP.PORT_B) + (leftLimit*0.7)
-        self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.7)
+        self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.65)
         self.leftLimitS = BP.get_motor_encoder(BP.PORT_B) + (rightLimit*0.5)
         self.rightLimitS = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.5)
 
@@ -25,15 +25,15 @@ class Head:
         print("Centre")
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.centreEncoder):
-            while(currentEValue > self.centreEncoder):
+            while(currentEValue > self.centreEncoder + 19):
                 BP.set_motor_power(BP.PORT_B, -speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                time.sleep(0.02)
+                # time.sleep(0.02)
         else:
-            while(currentEValue < self.centreEncoder):
+            while(currentEValue < self.centreEncoder - 19):
                 BP.set_motor_power(BP.PORT_B, speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                time.sleep(0.02)
+                # time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
 
     def turnLeft(self):
@@ -114,6 +114,3 @@ class Head:
 
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)
-    
-    def getEncoder(self):
-        return BP.get_motor_encoder(BP.PORT_B)
