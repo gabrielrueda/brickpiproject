@@ -114,6 +114,3 @@ class Head:
 
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)
-    
-    def getEncoder(self):
-        return BP.get_motor_encoder(BP.PORT_B)
