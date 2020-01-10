@@ -17,9 +17,7 @@ class avoidanceofObjects:
     BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
     switcher = 0
     direction = 0
-    leftScanValue = 0
-    rightScanValue = 0
-    centreScanValue = 0
+    ScanValues = [0,0,0]
     leftScanArray = []
     rightScanArray = []
     headAngle = 0 # 0 is for centre, 1 is for left, and 2 is for right
@@ -60,13 +58,13 @@ class avoidanceofObjects:
                 drive.stop()
             else:
                 if(self.closeToObject == True):
-                    if(self.centreScanValue == 0):
+                    if(self.ScanValues[2] == 0):
                         self.h.returnCentre()
                         drive.stop()
                         time.sleep(1)
-                        self.centreScanValue = self.getUltrasonic()
+                        self.ScanValues[2] = self.getUltrasonic()
                         print("Centre Scan Value:" + str(uValue))
-                    if(self.i <= 19 and self.rightScanValue == 0):
+                    if(self.i <= 19 and self.ScanValues[1] == 0):
                         if(self.i == 0):
                             scanV = self.h.scanGetValues()
                         else:
@@ -74,25 +72,25 @@ class avoidanceofObjects:
                         if(scanV == 2):
                             self.leftScanArray.append(self.getUltrasonic())
                         elif(scanV == 3):
-                            if(self.leftScanValue == 0):
-                                self.leftScanValue = self.getLowest(self.leftScanArray)
-                                print("Left Scan Value:" + str(self.leftScanValue))
+                            if(self.ScanValues[0] == 0):
+                                self.ScanValues[0] = self.getLowest(self.leftScanArray)
+                                print("Left Scan Value:" + str(self.ScanValues[0]))
 
                             self.rightScanArray.insert(self.i,self.getUltrasonic())
                             self.i += 1
                             print("i = " + str(self.i))
                             # print("Right Scan Value:" + str(self.getUltrasonic()))
-                    elif(self.rightScanValue == 0):
-                        self.rightScanValue = self.getLowest(self.rightScanArray)
-                        print("Right Scan Value:" + str(self.rightScanValue))
+                    elif(self.ScanValues[1] == 0):
+                        self.ScanValues[1] = self.getLowest(self.rightScanArray)
+                        print("Right Scan Value:" + str(self.ScanValues[1]))
                         self.i=0
 
                     elif(self.positionSet == False):
-                        if(self.rightScanValue > 40):
+                        if(self.ScanValues[1] > 40):
                             self.h.turnLeft()
                             self.direction = 1
                             self.headAngle = 1
-                        elif(self.leftScanValue > 40):
+                        elif(self.ScanValues[0] > 40):
                             self.h.turnRight()
                             self.direction = 0
                             self.headAngle = 2
@@ -128,9 +126,9 @@ class avoidanceofObjects:
     def checkObject(self):
         self.closeToObject = False
         self.positionSet = False
-        self.rightScanValue = 0
-        self.leftScanValue = 0
-        self.centreScanValue = 0
+        self.ScanValues[1] = 0
+        self.ScanValues[0] = 0
+        self.ScanValues[2] = 0
         self.rightScanArray = []
         self.leftScanArray = []
 
