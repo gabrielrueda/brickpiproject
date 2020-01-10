@@ -6,19 +6,17 @@ BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be 
 leftLimits = [0,0,0]
 rightLimits = [0,0,0]
 centreEncoder = 0
-directionOther = 0
 speed = 60
-direction = 0
+direction = [0,0]
 
 class Head:
     def __init__(self, leftLimit, rightLimit):
         self.centreEncoder = BP.get_motor_encoder(BP.PORT_B)
-        self.direction = 0
-        self.directionOther = 0
+        self.direction = [0,0]
         encoderValue = BP.get_motor_encoder(BP.PORT_B)
         self.leftLimits = [encoderValue + (leftLimit*0.7), encoderValue + (leftLimit*0.5), encoderValue + (leftLimit)]
         self.rightLimits = [encoderValue - (rightLimit*0.65), encoderValue - (rightLimit*0.5), encoderValue - (rightLimit)]
-        
+
 
     def returnCentre(self):
         print("Centre")
@@ -70,12 +68,12 @@ class Head:
             return 0
 
     def Scan(self):
-        if(self.directionOther == 0):
-            self.directionOther = self.turnLeftScan()
+        if(self.direction[1] == 0):
+            self.direction[1] = self.turnLeftScan()
             return 1
         else:
-            self.directionOther = self.turnRightScan()
-            if(self.directionOther == 1):
+            self.direction[1] = self.turnRightScan()
+            if(self.direction[1] == 1):
                 return 2
             else:
                 return 3
