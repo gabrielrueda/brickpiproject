@@ -6,6 +6,8 @@ leftLimit = 0
 rightLimit = 0
 leftLimitS = 0
 rightLimitS = 0
+leftLimit3 = 0
+rightLimit3 = 0
 centreEncoder = 0
 directionOther = 0
 speed = 60
@@ -20,6 +22,8 @@ class Head:
         self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.65)
         self.leftLimitS = BP.get_motor_encoder(BP.PORT_B) + (rightLimit*0.5)
         self.rightLimitS = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.5)
+        self.leftLimit3 = BP.get_motor_encoder(BP.PORT_B) + (leftLimit)
+        self.rightLimit3 = BP.get_motor_encoder(BP.PORT_B) - (rightLimit)
 
     def returnCentre(self):
         print("Centre")

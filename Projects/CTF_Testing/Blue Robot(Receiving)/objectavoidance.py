@@ -53,6 +53,7 @@ class avoidanceofObjects:
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
+            print("Avoidance:" + str(uValue))
             if(uValue <= 10):
                 self.closeToObject = True
             if(uValue == 0):
@@ -136,7 +137,7 @@ class avoidanceofObjects:
         uValue = self.getUltrasonic()
 
         p = -1
-        error = (uValue - 25) * p
+        error = (uValue - 15) * p
         if(uValue > 200):
             BP.set_motor_power(BP.PORT_A, -20)
             BP.set_motor_power(BP.PORT_D, -20)
