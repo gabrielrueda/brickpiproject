@@ -48,62 +48,32 @@ class Head:
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
-    
-    def turnLeftScan(self):
+  
+    def scanLeft(self, var):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue < self.leftLimits[1]):
+        if(currentEValue < self.leftLimits[var]):
             BP.set_motor_power(BP.PORT_B, (speed*0.40))
             return 0
         else:
             BP.set_motor_power(BP.PORT_B, 0)
             return 1
     
-    def turnRightScan(self):
+    def scanRight(self, var):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue > self.rightLimits[1]):
+        if(currentEValue > self.rightLimits[var]):
             BP.set_motor_power(BP.PORT_B, -(speed*0.40))
             return 1
         else:
             BP.set_motor_power(BP.PORT_B, 0)
             return 0
 
-    def Scan(self):
-        if(self.direction[1] == 0):
-            self.direction[1] = self.turnLeftScan()
+    def scan(self, i):
+        if(self.direction[i] == 0):
+            self.direction[i] = self.scanLeft(i)
             return 1
         else:
-            self.direction[1] = self.turnRightScan()
-            if(self.direction[1] == 1):
-                return 2
-            else:
-                return 3
-        BP.set_motor_power(BP.PORT_B, 0)
-
-    def turnLeftScanNew(self):
-        currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue < self.leftLimits[0]):
-            BP.set_motor_power(BP.PORT_B, (speed*0.40))
-            return 0
-        else:
-            BP.set_motor_power(BP.PORT_B, 0)
-            return 1
-    
-    def turnRightScanNew(self):
-        currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue > self.rightLimits[0]):
-            BP.set_motor_power(BP.PORT_B, -(speed*0.40))
-            return 1
-        else:
-            BP.set_motor_power(BP.PORT_B, 0)
-            return 0
-
-    def scanGetValues(self):
-        if(self.direction == 0):
-            self.direction = self.turnLeftScanNew()
-            return 1
-        else:
-            self.direction = self.turnRightScanNew()
-            if(self.direction == 1):
+            self.direction[i] = self.scanRight(i)
+            if(self.direction[i] == 1):
                 return 2
             else:
                 return 3
@@ -111,3 +81,4 @@ class Head:
 
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)
+
