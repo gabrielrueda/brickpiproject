@@ -2,12 +2,9 @@ import brickpi3
 import time
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
-leftLimit = 0
-rightLimit = 0
-leftLimitS = 0
-rightLimitS = 0
-leftLimit3 = 0
-rightLimit3 = 0
+
+leftLimits = [0,0,0]
+rightLimits = [0,0,0]
 centreEncoder = 0
 directionOther = 0
 speed = 60
@@ -18,12 +15,10 @@ class Head:
         self.centreEncoder = BP.get_motor_encoder(BP.PORT_B)
         self.direction = 0
         self.directionOther = 0
-        self.leftLimit = BP.get_motor_encoder(BP.PORT_B) + (leftLimit*0.7)
-        self.rightLimit = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.65)
-        self.leftLimitS = BP.get_motor_encoder(BP.PORT_B) + (rightLimit*0.5)
-        self.rightLimitS = BP.get_motor_encoder(BP.PORT_B) - (rightLimit*0.5)
-        self.leftLimit3 = BP.get_motor_encoder(BP.PORT_B) + (leftLimit)
-        self.rightLimit3 = BP.get_motor_encoder(BP.PORT_B) - (rightLimit)
+        encoderValue = BP.get_motor_encoder(BP.PORT_B)
+        self.leftLimits = [encoderValue + (leftLimit*0.7), encoderValue + (leftLimit*0.5), encoderValue + (leftLimit)]
+        self.rightLimits = [encoderValue - (rightLimit*0.65), encoderValue - (rightLimit*0.5), encoderValue - (rightLimit)]
+        
 
     def returnCentre(self):
         print("Centre")
@@ -42,7 +37,7 @@ class Head:
 
     def turnLeft(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        while(currentEValue < self.leftLimit3):
+        while(currentEValue < self.leftLimits[2]):
             BP.set_motor_power(BP.PORT_B, speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
@@ -50,7 +45,7 @@ class Head:
 
     def turnRight(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        while(currentEValue > self.rightLimit3):
+        while(currentEValue > self.rightLimits[2]):
             BP.set_motor_power(BP.PORT_B, -speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
@@ -58,7 +53,7 @@ class Head:
     
     def turnLeftScan(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue < self.leftLimitS):
+        if(currentEValue < self.leftLimits[1]):
             BP.set_motor_power(BP.PORT_B, (speed*0.40))
             return 0
         else:
@@ -67,7 +62,7 @@ class Head:
     
     def turnRightScan(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue > self.rightLimitS):
+        if(currentEValue > self.rightLimits[1]):
             BP.set_motor_power(BP.PORT_B, -(speed*0.40))
             return 1
         else:
@@ -88,7 +83,7 @@ class Head:
 
     def turnLeftScanNew(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue < self.leftLimit):
+        if(currentEValue < self.leftLimits[0]):
             BP.set_motor_power(BP.PORT_B, (speed*0.40))
             return 0
         else:
@@ -97,7 +92,7 @@ class Head:
     
     def turnRightScanNew(self):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        if(currentEValue > self.rightLimit):
+        if(currentEValue > self.rightLimits[0]):
             BP.set_motor_power(BP.PORT_B, -(speed*0.40))
             return 1
         else:
