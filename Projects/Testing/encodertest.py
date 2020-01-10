@@ -22,7 +22,6 @@ def turnRight90():
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
 
-
 def turnLeft90():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
     while(BP.get_motor_encoder(BP.PORT_A) - motorsPos[0] > encoders[0]):
@@ -34,7 +33,6 @@ def turnLeft90():
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
 
-
 def turn45right():
     motorsPos = [BP.get_motor_encoder(BP.PORT_A),BP.get_motor_encoder(BP.PORT_D)]
 
@@ -45,8 +43,6 @@ def turn45right():
     
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_D, 0)
-
-
 
 try:
     while True:

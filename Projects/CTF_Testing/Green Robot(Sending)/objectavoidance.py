@@ -66,7 +66,7 @@ class avoidanceofObjects:
                         print("Centre Scan Value:" + str(uValue))
                     if(self.i <= 19 and self.ScanValues[1] == 0):
                         if(self.i == 0):
-                            scanV = self.h.scanGetValues()
+                            scanV = self.h.scan(0)
                         else:
                             scanV = 3
                         if(scanV == 2):
@@ -121,7 +121,7 @@ class avoidanceofObjects:
                             drive.moveForward()
                 else:
                     drive.moveForward()
-                    self.h.Scan()
+                    self.h.scan(1)
 
     def checkObject(self):
         self.closeToObject = False

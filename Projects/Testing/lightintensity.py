@@ -26,7 +26,6 @@ try:
     print("Configured.")
     
     while True:
-        # linefollowing()
         try:
             v = BP.get_sensor(BP.PORT_3)
             print(v)
