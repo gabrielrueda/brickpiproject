@@ -17,7 +17,7 @@ class avoidanceofObjects:
     BP.set_sensor_type(BP.PORT_4, BP.SENSOR_TYPE.EV3_ULTRASONIC_CM)
     switcher = 0
     direction = 0
-    ScanValues = [0,0,0] #Left is [0], right is [1], and centre is [2]
+    ScanValues = [0,0,0]
     leftScanArray = []
     rightScanArray = []
     headAngle = 0 # 0 is for centre, 1 is for left, and 2 is for right

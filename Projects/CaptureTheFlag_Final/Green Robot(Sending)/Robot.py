@@ -28,7 +28,7 @@ def mainFunction():
             BP.set_motor_power(BP.PORT_B, 0)
             linefollowing_ctf.linefollowing()
         if(colour[getColour()] == "Red"):
-            drive.turnLeft90()
+            drive.turnRight90()
 
         time.sleep(0.02)
 
