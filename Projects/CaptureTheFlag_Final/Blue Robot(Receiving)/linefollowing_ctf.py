@@ -27,9 +27,9 @@ def linefollowing():
             turning(sensor)
         else:
             drive.moveBackward()
-            time.sleep(2)
+            time.sleep(2.5)
             drive.moveFast()
-            time.sleep(0.33)
+            time.sleep(0.22)
             drive.stop()
             break
         time.sleep(0.02)

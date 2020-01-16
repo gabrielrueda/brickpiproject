@@ -27,6 +27,7 @@ def mainFunction():
         if(getReflected() < 27):
             BP.set_motor_power(BP.PORT_B, 0)
             linefollowing_ctf.linefollowing()
+            o.h.returnCentre()
         if(colour[getColour()] == "Red"):
             drive.turnRight90()
 
