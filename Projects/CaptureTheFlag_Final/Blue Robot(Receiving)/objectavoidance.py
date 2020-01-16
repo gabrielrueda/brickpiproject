@@ -87,11 +87,11 @@ class avoidanceofObjects:
 
                     elif(self.positionSet == False):
                         if(self.ScanValues[1] > 60):
-                            self.h.turnLeft()
+                            self.h.turnLeft(0.7)
                             self.direction = 1
                             self.headAngle = 1
                         elif(self.ScanValues[0] > 60):
-                            self.h.turnRight()
+                            self.h.turnRight(0.7)
                             self.direction = 0
                             self.headAngle = 2
                         else:
@@ -104,18 +104,18 @@ class avoidanceofObjects:
                             if(self.headAngle == 0):
                                 if(self.direction == 0):
                                     drive.turnLeft90()
-                                    self.h.turnRight()
+                                    self.h.turnRight(1)
                                 else:
                                     drive.turnRight90()
-                                    self.h.turnLeft()
+                                    self.h.turnLeft(1)
                             elif(self.headAngle == 1):
                                 drive.turnRight45()
                                 self.h.returnCentre()
-                                self.h.turnLeft()
+                                self.h.turnLeft(1)
                             else:
                                 drive.turnLeft45()
                                 self.h.returnCentre()
-                                self.h.turnRight()
+                                self.h.turnRight(1)
                             self.switcher = 1
                         else:
                             drive.moveForward()

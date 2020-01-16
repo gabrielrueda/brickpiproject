@@ -33,17 +33,17 @@ class Head:
                 # time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
 
-    def turnLeft(self):
+    def turnLeft(self, multiplier):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        while(currentEValue < self.leftLimits[2]):
+        while(currentEValue < (self.leftLimits[2]*multiplier)):
             BP.set_motor_power(BP.PORT_B, speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
         BP.set_motor_power(BP.PORT_B, 0)
 
-    def turnRight(self):
+    def turnRight(self, multiplier):
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
-        while(currentEValue > self.rightLimits[2]):
+        while(currentEValue > (self.rightLimits[2]*multiplier)):
             BP.set_motor_power(BP.PORT_B, -speed)
             currentEValue = BP.get_motor_encoder(BP.PORT_B)
             time.sleep(0.02)
