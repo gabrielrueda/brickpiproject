@@ -86,11 +86,11 @@ class avoidanceofObjects:
                         self.i=0
 
                     elif(self.positionSet == False):
-                        if(self.ScanValues[1] > 40):
+                        if(self.ScanValues[1] > 60):
                             self.h.turnLeft()
                             self.direction = 1
                             self.headAngle = 1
-                        elif(self.ScanValues[0] > 40):
+                        elif(self.ScanValues[0] > 60):
                             self.h.turnRight()
                             self.direction = 0
                             self.headAngle = 2
