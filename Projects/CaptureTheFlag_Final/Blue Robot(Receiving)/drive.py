@@ -12,6 +12,10 @@ def moveForward():
     BP.set_motor_power(BP.PORT_A, -speed)
     BP.set_motor_power(BP.PORT_D, -speed)
 
+def moveFast():
+    BP.set_motor_power(BP.PORT_A, -100)
+    BP.set_motor_power(BP.PORT_D, -100)
+
 def moveBackward():
     BP.set_motor_power(BP.PORT_A, speed)
     BP.set_motor_power(BP.PORT_D, speed)
