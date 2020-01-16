@@ -81,4 +81,3 @@ class Head:
 
     def stop(self):
         BP.set_motor_power(BP.PORT_B, 0)
-
