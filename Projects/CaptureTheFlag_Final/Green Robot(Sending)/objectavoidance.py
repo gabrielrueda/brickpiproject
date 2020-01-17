@@ -155,10 +155,10 @@ class avoidanceofObjects:
     def aroundObject(self):
         if(self.direction == 0):
             time.sleep(0.5)
-            drive.pivotTurn90(20,40,-2400)
+            drive.pivotTurn90(25,40,-2400)
         else:
             time.sleep(0.5)
-            drive.pivotTurn90(40,20,-2400)
+            drive.pivotTurn90(40,25,-2400)
         
         self.switcher = 0
 
