@@ -26,10 +26,9 @@ def linefollowing():
         if(elapsedTime <= maxTime):
             turning(sensor)
         else:
-            drive.moveBackward()
-            time.sleep(2.5)
+            drive.revPivotTurn45(-30,-15)
             drive.moveFast()
-            time.sleep(0.22)
+            time.sleep(0.1)
             drive.stop()
             break
         time.sleep(0.02)
