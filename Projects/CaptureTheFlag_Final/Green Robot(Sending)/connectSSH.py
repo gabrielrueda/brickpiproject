@@ -20,6 +20,5 @@ def run():
     for line in stderr:
         print('... ' + line.strip('\n'))
 
-
 print("Starting Search....")
 run()
