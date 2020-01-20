@@ -51,7 +51,7 @@ class avoidanceofObjects:
     def avoidance(self):
             uValue = 70
             uValue = self.getUltrasonic()
-            print("Avoidance:" + str(uValue))
+            # print("Avoidance:" + str(uValue))
             if(uValue <= 10):
                 self.closeToObject = True
             if(uValue == 0):
@@ -105,9 +105,11 @@ class avoidanceofObjects:
                                 if(self.direction == 0):
                                     drive.turnLeft90()
                                     self.h.turnRight(1)
+                                    print("Turning Left...")
                                 else:
                                     drive.turnRight90()
                                     self.h.turnLeft(1)
+                                    print("Turning Right...")
                             elif(self.headAngle == 1):
                                 drive.turnRight45()
                                 self.h.returnCentre()
