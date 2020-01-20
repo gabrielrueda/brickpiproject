@@ -19,7 +19,7 @@ class Head:
 
 
     def returnCentre(self):
-        print("Centre")
+        # print("Centre")
         currentEValue = BP.get_motor_encoder(BP.PORT_B)
         if(currentEValue > self.centreEncoder):
             while(currentEValue > self.centreEncoder + 19):
