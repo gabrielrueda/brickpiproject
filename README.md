@@ -29,5 +29,5 @@ These are the projects created in Gabriel Rueda and Antonio Iatonna's University
 http://uwcshscoop.myweb.cs.uwindsor.ca/wp/uncategorized/capture-the-flag-game/
 
 ### Pictures
-![image](https://user-images.githubusercontent.com/35504507/194338429-116f02f5-402f-4c05-a08a-e773420a3ffd.png)
 ![image](https://user-images.githubusercontent.com/35504507/194338473-25d5ed73-6388-4c2e-86b0-e5d5c184491b.png)
+![image](https://user-images.githubusercontent.com/35504507/194338429-116f02f5-402f-4c05-a08a-e773420a3ffd.png)
