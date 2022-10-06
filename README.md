@@ -4,11 +4,11 @@ These are the projects created in Gabriel Rueda and Antonio Iatonna's University
 ### Projects
 ##### Capture the Flag
 - Combines both Object Avoidance and Line Following projects to play a 1v1 capture the flag game with another robot
-- The robot includes a flag that the robot can grab the flag and return to it's base
+- The course includes a flag that the robot can grab and return to it's base
 - The CaptureTheFlag_Final folder contains the final version
 
 ##### Object Avoidance
-- The robot has a moveable head in order to check both front, left and right of itself
+- The robot has a moveable head with an ultrasonic sensor in order to check both front, left and right of itself
 - The robot ensures that it has moved past the obstacle before continuing to move forward
 
 ##### Line Following
@@ -31,3 +31,7 @@ http://uwcshscoop.myweb.cs.uwindsor.ca/wp/uncategorized/capture-the-flag-game/
 ### Pictures
 ![image](https://user-images.githubusercontent.com/35504507/194338473-25d5ed73-6388-4c2e-86b0-e5d5c184491b.png)
 ![image](https://user-images.githubusercontent.com/35504507/194338429-116f02f5-402f-4c05-a08a-e773420a3ffd.png)
+
+### License
+
+This work is licensed under the MIT License.
