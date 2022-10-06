@@ -10,7 +10,7 @@ speed = 60
 direction = [0,0]
 
 class Head:
-    def __init__(self, leftLimit, rightLimit):
+    def __init__(self, leftLimit, rightLimit): # set head limits to prevent over extension
         self.centreEncoder = BP.get_motor_encoder(BP.PORT_B)
         self.direction = [0,0]
         encoderValue = BP.get_motor_encoder(BP.PORT_B)
@@ -25,12 +25,12 @@ class Head:
             while(currentEValue > self.centreEncoder + 19):
                 BP.set_motor_power(BP.PORT_B, -speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                # time.sleep(0.02)
+    
         else:
             while(currentEValue < self.centreEncoder - 19):
                 BP.set_motor_power(BP.PORT_B, speed)
                 currentEValue = BP.get_motor_encoder(BP.PORT_B)
-                # time.sleep(0.02)
+                
         BP.set_motor_power(BP.PORT_B, 0)
 
     def turnLeft(self, multiplier):

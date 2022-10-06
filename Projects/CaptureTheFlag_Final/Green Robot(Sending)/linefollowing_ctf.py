@@ -18,7 +18,6 @@ def linefollowing():
     while(sensor < 90):
         try:
             sensor = BP.get_sensor(BP.PORT_3)
-            # print(sensor)
         except brickpi3.SensorError as error:
             print(error)
         
@@ -33,7 +32,7 @@ def linefollowing():
             break
         time.sleep(0.02)
 
-def turning(sensor):
+def turning(sensor): # correct robot position to follow line
     p = 0.8
     error = (sensor - 30) * p
     BP.set_motor_power(BP.PORT_A, speed + (error * 0.8))

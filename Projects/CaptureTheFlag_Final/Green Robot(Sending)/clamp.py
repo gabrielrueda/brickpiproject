@@ -47,6 +47,7 @@ def flagRelease():
     drive.stop()
     grab()
 
+# set limits at init time to ensure clamp is not over extended or retracted
 try:
     grabLimit = BP.get_motor_encoder(BP.PORT_C) + 50
     releaseLimit = grabLimit + 1200
